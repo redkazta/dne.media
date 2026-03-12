@@ -22,6 +22,8 @@ const { title } = Astro.props;
     <ClientRouter />
   </head>
   <body class="bg-black text-neutral-200 antialiased selection:bg-white selection:text-black">
+    <div id="route-loader" class="pointer-events-none fixed left-0 top-0 z-[90] h-[2px] w-0 bg-white/90 opacity-0 transition-[width,opacity] duration-300"></div>
+    <div id="page-veil" class="pointer-events-none fixed inset-0 z-[60] bg-black/35 opacity-0 transition-opacity duration-300"></div>
     <!-- Noise Texture -->
     <div class="fixed inset-0 z-50 pointer-events-none opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
     
@@ -156,10 +158,110 @@ const { title } = Astro.props;
       }
 
       // Run on initial load
-      setupMenu();
+      function setupSmartMedia() {
+        const images = Array.from(document.querySelectorAll('img')) as HTMLImageElement[];
+        images.forEach((img) => {
+          if (img.getAttribute('data-smart-bound') === 'true') return;
+          img.setAttribute('data-smart-bound', 'true');
+          img.setAttribute('data-smart-image', '');
 
-      // Run on View Transitions navigation
-      document.addEventListener('astro:page-load', setupMenu);
+          const markLoaded = () => {
+            img.classList.add('is-loaded');
+          };
+
+          if (img.complete && img.naturalWidth > 0) {
+            markLoaded();
+          } else {
+            img.addEventListener('load', markLoaded, { once: true });
+            img.addEventListener('error', markLoaded, { once: true });
+          }
+        });
+      }
+
+      function setupScrollReveal() {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const blocks = Array.from(document.querySelectorAll('main section, main article, main [data-reveal]')) as HTMLElement[];
+        if (prefersReducedMotion) {
+          blocks.forEach((block) => {
+            block.classList.add('is-visible');
+          });
+          return;
+        }
+
+        const observer = new IntersectionObserver((entries, io) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            (entry.target as HTMLElement).classList.add('is-visible');
+            io.unobserve(entry.target);
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+        blocks.forEach((block) => {
+          if (block.getAttribute('data-reveal-bound') === 'true') return;
+          block.setAttribute('data-reveal-bound', 'true');
+          if (!block.classList.contains('animate-fade-in')) {
+            block.classList.add('reveal-block');
+          }
+          observer.observe(block);
+        });
+      }
+
+      function setupRouteLoader() {
+        if (document.body.getAttribute('data-route-loader-bound') === 'true') return;
+        document.body.setAttribute('data-route-loader-bound', 'true');
+
+        const loader = document.getElementById('route-loader') as HTMLDivElement | null;
+        const veil = document.getElementById('page-veil') as HTMLDivElement | null;
+        if (!loader || !veil) return;
+
+        let progressTimer: number | null = null;
+
+        const start = () => {
+          loader.style.opacity = '1';
+          loader.style.width = '24%';
+          veil.style.opacity = '1';
+          if (progressTimer) window.clearTimeout(progressTimer);
+          progressTimer = window.setTimeout(() => {
+            loader.style.width = '72%';
+          }, 90);
+        };
+
+        const finish = () => {
+          loader.style.width = '100%';
+          window.setTimeout(() => {
+            loader.style.opacity = '0';
+            loader.style.width = '0%';
+            veil.style.opacity = '0';
+          }, 220);
+        };
+
+        document.addEventListener('click', (event) => {
+          const target = event.target as HTMLElement | null;
+          const link = target?.closest('a') as HTMLAnchorElement | null;
+          if (!link) return;
+          const href = link.getAttribute('href');
+          if (!href) return;
+          if (link.target === '_blank') return;
+          if (href.startsWith('#')) return;
+          if (href.startsWith('mailto:')) return;
+          if (href.startsWith('tel:')) return;
+          if (href.startsWith('http') && !href.includes(window.location.host)) return;
+          start();
+        });
+
+        document.addEventListener('astro:before-preparation', start);
+        document.addEventListener('astro:page-load', finish);
+      }
+
+      function initGlobalUX() {
+        setupMenu();
+        setupSmartMedia();
+        setupScrollReveal();
+        setupRouteLoader();
+      }
+
+      initGlobalUX();
+      document.addEventListener('astro:page-load', initGlobalUX);
     </script>
 
     <!-- Footer -->
