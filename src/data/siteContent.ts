@@ -178,7 +178,18 @@ export const homeFeaturedMedia = [
   wixMedia("99ddea_4df3a6659a334314b2a33f8b03902f9b~mv2.jpg"),
   wixMedia("99ddea_673f875c4ea94779929e418a4a032911~mv2.jpg"),
   wixMedia("99ddea_7e760e8ca8a8439a9b306dfaf34ff55e~mv2.jpg"),
-  wixMedia("99ddea_8042a7b2923743498eb0a6f28e9494bf~mv2.jpg")
+  wixMedia("99ddea_8042a7b2923743498eb0a6f28e9494bf~mv2.jpg"),
+  wixMedia("99ddea_84797bc743bc4ae0aadca2f57c7ba945~mv2.jpg"),
+  wixMedia("99ddea_936862ec7ff6472b98376bee7895294f~mv2.jpg"),
+  wixMedia("99ddea_950d05604009430f96d0511882b9e488~mv2.jpg"),
+  wixMedia("99ddea_9b5723e57f214527a7839cb6b67f6582~mv2.jpg"),
+  wixMedia("99ddea_9d6d24ce5408453abe3fc9cdf6706970~mv2.jpg"),
+  wixMedia("99ddea_a7048c68d39d43c09bfb5fcfb0917325~mv2.jpg"),
+  wixMedia("99ddea_ab9eb2e0a4a443ffa928d74be31176b4~mv2.jpg"),
+  wixMedia("99ddea_aea5caaf1b9b4ecf9a569f409a081c3e~mv2.jpg"),
+  wixMedia("99ddea_b4a55c31c9cc4f0194e2fb4a344ce71e~mv2.jpg"),
+  wixMedia("99ddea_dcc96f50b6f34d82ba9909ea4c3ef426~mv2.jpg"),
+  wixMedia("99ddea_e433ce6937f2407f89712fc9a96db2d2~mv2.jpg")
 ];
 
 export const categoryMediaBySlug: Record<string, string[]> = {
@@ -194,7 +205,18 @@ export const categoryMediaBySlug: Record<string, string[]> = {
     wixMedia("99ddea_3c4c5bc6baea4cb38dac12ce532bffce~mv2.jpg"),
     wixMedia("99ddea_4dd430a5ec1d4958b89ce8b2bcbec2a6~mv2.jpg"),
     wixMedia("99ddea_6321b871f3aa472aa844c3df69c5af8e~mv2.jpg"),
-    wixMedia("99ddea_69131071e11a4d829697f62a958fd760~mv2.jpg")
+    wixMedia("99ddea_69131071e11a4d829697f62a958fd760~mv2.jpg"),
+    wixMedia("99ddea_79ce3f1cf6cd47ab9bd3b448d2177c08~mv2.jpg"),
+    wixMedia("99ddea_8e1a8cea7e104fd0bfac3c214fbcb588~mv2.jpg"),
+    wixMedia("99ddea_8eec21e795584d9bbbb30e7655a017dd~mv2.jpg"),
+    wixMedia("99ddea_99c1732ec7bb481f84eb773560499281~mv2.jpg"),
+    wixMedia("99ddea_9d88b02aafab46be90069ed983962422~mv2.jpg"),
+    wixMedia("99ddea_a8e70d84426545deac74aee17cfd50a2~mv2.jpg"),
+    wixMedia("99ddea_ba44a08fe20b40fd9eaa3c0cbf918bf3~mv2.jpg"),
+    wixMedia("99ddea_ba619e58191b49d8ba48b702bc8c5221~mv2.jpg"),
+    wixMedia("99ddea_c00939cf41bb490b99f93620924cfa23~mv2.jpg"),
+    wixMedia("99ddea_d179fb3b8d644702a04b86efe3448ca9~mv2.jpg"),
+    wixMedia("99ddea_d2c92a3cd5d7475993b6ea41c882fd54~mv2.jpg")
   ],
   "live-clips": [
     wixMedia("99ddea_197b874691fa4989a2e5e4a053aae83a~mv2.jpg"),
@@ -208,7 +230,18 @@ export const categoryMediaBySlug: Record<string, string[]> = {
     wixMedia("99ddea_8b5502a5650d4a61aba133fff0ff8950~mv2.jpg"),
     wixMedia("99ddea_8ce0e219a6b643d98a03a30ae5456d9d~mv2.jpg"),
     wixMedia("99ddea_93a6f564f4614e5493ab1faf5f8fe8ea~mv2.jpg"),
-    wixMedia("99ddea_a06fad9295964140bcc161ad549c0052~mv2.jpg")
+    wixMedia("99ddea_a06fad9295964140bcc161ad549c0052~mv2.jpg"),
+    wixMedia("99ddea_a7c10552169b47e998c4b8c89290692c~mv2.jpg"),
+    wixMedia("99ddea_af96a327d8064a698bc7ad8e0647a5e1~mv2.jpg"),
+    wixMedia("99ddea_b1fe296defce4599a361fbe2fdab1697~mv2.jpg"),
+    wixMedia("99ddea_bebb2f597e3445d9aa135b1b7dd06339~mv2.jpg"),
+    wixMedia("99ddea_c32077ef3fe84a2cb963baa926525f9c~mv2.jpg"),
+    wixMedia("99ddea_c4fb480bd0ae42d9a7980301c870a30a~mv2.jpg"),
+    wixMedia("99ddea_cca81eaa147b4b289969122f4eb2dac6~mv2.jpg"),
+    wixMedia("99ddea_cd475bcec92840ea9ee362e2e233b249~mv2.jpg"),
+    wixMedia("99ddea_d5ead33c1ad24ad8af65a93531e8d18b~mv2.jpg"),
+    wixMedia("99ddea_e10606a4fc564f8c8c41f7c65650d466~mv2.jpg"),
+    wixMedia("99ddea_e383e3cc3695465cbec7cd12ef91822f~mv2.jpg")
   ],
   "full-set-recordings": [
     wixMedia("99ddea_561c006619824b009782310128741d9c~mv2.jpg"),
@@ -231,7 +264,14 @@ export const categoryMediaBySlug: Record<string, string[]> = {
     wixMedia("99ddea_78ec128ebe52414a808d736c1c59ede7~mv2.jpg"),
     wixMedia("99ddea_790db49a048f4f538f38e05bd2c51571~mv2.jpg"),
     wixMedia("99ddea_9f46dbcdab5e46ffa38423f3aaaed721~mv2.jpg"),
-    wixMedia("99ddea_a3f8251ba0624d649423b982eef92628~mv2.jpg")
+    wixMedia("99ddea_a3f8251ba0624d649423b982eef92628~mv2.jpg"),
+    wixMedia("99ddea_a49f242637bc41dc9b4a6c2010d18e7a~mv2.jpg"),
+    wixMedia("99ddea_a9aaf00359624712b2d0fe9900926cdf~mv2.jpg"),
+    wixMedia("99ddea_ba41ecc27e3c412ca3241200e91b3f49~mv2.jpg"),
+    wixMedia("99ddea_e7765f28222e409bb7dce5c2d502a56e~mv2.jpg"),
+    wixMedia("99ddea_f12e4340db6045b08ffa70520f6c1680~mv2.jpg"),
+    wixMedia("99ddea_f326c6cd9de841df808227c0fc81f08f~mv2.jpg"),
+    wixMedia("99ddea_f87bb1d0ba5c41f4b95272d5a2ef4dd9~mv2.jpg")
   ],
   backstage: [
     wixMedia("99ddea_0a26eb5d41f44fa9b3d0ebb7dbaaafdd~mv2.jpg"),
@@ -245,7 +285,18 @@ export const categoryMediaBySlug: Record<string, string[]> = {
     wixMedia("99ddea_363c0125b2b648d8863c6e45b128165c~mv2.jpg"),
     wixMedia("99ddea_5a61719f7d6a4174a3053c08bb2dabbf~mv2.jpg"),
     wixMedia("99ddea_71648528a43247c0b0871efb12291c8b~mv2.jpg"),
-    wixMedia("99ddea_73159f4246fe446a81d43cf5089fc37a~mv2.jpg")
+    wixMedia("99ddea_73159f4246fe446a81d43cf5089fc37a~mv2.jpg"),
+    wixMedia("99ddea_782e789ab4b347688b318be2af8244af~mv2.jpg"),
+    wixMedia("99ddea_7c2f154abea240d4a695254d9a5ce027~mv2.jpg"),
+    wixMedia("99ddea_7e9a8c06257e4ac1bc75d7dc39218986~mv2.jpg"),
+    wixMedia("99ddea_8c0c64e10a9d4ceea8bd9601258ff179~mv2.jpg"),
+    wixMedia("99ddea_926950d2109d4f088c893b928a9bbe4d~mv2.jpg"),
+    wixMedia("99ddea_9dbf6c749bb747cfad13cbe8134f9e2d~mv2.jpg"),
+    wixMedia("99ddea_a4cf6a62d13e40bd95b0e70c1ad610f9~mv2.jpg"),
+    wixMedia("99ddea_b758c3fb5f514905957403ce608041ca~mv2.jpg"),
+    wixMedia("99ddea_cd09206ca9f74060b13383e2de4656ae~mv2.jpg"),
+    wixMedia("99ddea_d0429cecd4bf441d94c3973f9f65e597~mv2.jpg"),
+    wixMedia("99ddea_d14c13dc2f1a4e478aef042dc76b3910~mv2.jpg")
   ],
   "multi-cam": [
     wixMedia("99ddea_13da76f76067473685d99cc7b692b669~mv2.jpg"),
@@ -259,7 +310,18 @@ export const categoryMediaBySlug: Record<string, string[]> = {
     wixMedia("99ddea_3e7ac2524e9c4193a109b683c96b3b1b~mv2.jpg"),
     wixMedia("99ddea_3eb044831cc346efaef91820beda71c0~mv2.jpg"),
     wixMedia("99ddea_40463a2bd42f463b96e8cca1a2bdcc59~mv2.jpg"),
-    wixMedia("99ddea_5a8cdbfc47ff4eb28dac62ce761aea3a~mv2.jpg")
+    wixMedia("99ddea_5a8cdbfc47ff4eb28dac62ce761aea3a~mv2.jpg"),
+    wixMedia("99ddea_5b9bcb79b69942a0aaef1d05cd01b683~mv2.jpg"),
+    wixMedia("99ddea_619f1e2b6c574d44b8fdd99afbe7d8cd~mv2.jpg"),
+    wixMedia("99ddea_67704193442d44cfac2d2fefdd52c95a~mv2.jpg"),
+    wixMedia("99ddea_800cf436166a4ffcae4746aff8da8f3a~mv2.jpg"),
+    wixMedia("99ddea_81261b3c274a427a998bc9fecc09b4ce~mv2.jpg"),
+    wixMedia("99ddea_946bfc10de3946c2a80b01c12389e5c7~mv2.jpg"),
+    wixMedia("99ddea_9514da8f83514776909b0e230e07ddcf~mv2.jpg"),
+    wixMedia("99ddea_a7726e64e0e6407bb73bcd14d8e0ec04~mv2.jpg"),
+    wixMedia("99ddea_b15c565a0b1a4b2499fa047d1486bce3~mv2.jpg"),
+    wixMedia("99ddea_b56233f1417246ec98c027b9fe01a63d~mv2.jpg"),
+    wixMedia("99ddea_cb22effea60643cd96dac7f3583fd32e~mv2.jpg")
   ]
 };
 
