@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { managementProfiles, pages, portfolioCategories } from "../data/siteContent";
+import { categoryMediaBySlug, managementProfiles, pages, portfolioCategories } from "../data/siteContent";
 
 export function getStaticPaths() {
   const slugs = new Set([
@@ -22,6 +22,7 @@ const pageTitle = page?.title ?? `${pageLabel} | DNE Media`;
 const typeLabel = category ? "Portfolio" : "Artist";
 const backLink = category ? "/" : "/artists";
 const backText = category ? "Home" : "All Artists";
+const categoryMedia = category ? categoryMediaBySlug[category.slug] ?? [] : [];
 ---
 
 <Layout title={pageTitle}>
@@ -89,6 +90,25 @@ const backText = category ? "Home" : "All Artists";
             {profile?.bio || category?.description || "Content coming soon."}
           </p>
         </div>
+
+        {categoryMedia.length > 0 && (
+          <div class="mt-6 md:mt-8">
+            <div class="mb-3 flex items-center justify-between">
+              <p class="text-[8px] md:text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-500">Media</p>
+              <p class="text-[8px] md:text-[10px] uppercase tracking-[0.2em] text-neutral-600">{categoryMedia.length} items</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
+              {categoryMedia.map((item) => (
+                <a href={item} target="_blank" rel="noopener noreferrer" class="group block">
+                  <div class="relative aspect-[4/5] overflow-hidden bg-neutral-900">
+                    <img src={item} alt={pageLabel} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/5 transition-colors"></div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
     </div>
