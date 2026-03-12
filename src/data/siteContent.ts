@@ -147,13 +147,21 @@ export const roster = [
   "Y DO I."
 ];
 
-export const portfolioCategories = [
-  { slug: "concerts", label: "Concerts" },
-  { slug: "full-set-recordings", label: "Full Set Recordings" },
-  { slug: "recap-videos", label: "Aftermovies" },
-  { slug: "live-clips", label: "Live Clips" },
-  { slug: "backstage", label: "Backstage" },
-  { slug: "multi-cam", label: "Multi-cam" }
+export interface PortfolioCategory {
+  slug: string;
+  label: string;
+  image?: string;
+  description?: string;
+  tags?: string[];
+}
+
+export const portfolioCategories: PortfolioCategory[] = [
+  { slug: "concerts", label: "Concerts", image: "/images/concerts-cover.jpg", description: "Capturing the energy of live performances.", tags: ["Photography"] },
+  { slug: "full-set-recordings", label: "Full Set Recordings", description: "Complete performance recordings.", tags: ["Video"] },
+  { slug: "recap-videos", label: "Aftermovies", description: "Highlight reels and event recaps.", tags: ["Video"] },
+  { slug: "live-clips", label: "Live Clips", description: "Short form content for social media.", tags: ["Video", "Social"] },
+  { slug: "backstage", label: "Backstage", description: "Behind the scenes access.", tags: ["Photography", "Video"] },
+  { slug: "multi-cam", label: "Multi-cam", description: "Professional multi-camera productions.", tags: ["Video", "Production"] }
 ];
 
 export interface ArtistProfile {

@@ -75,9 +75,9 @@ const backText = category ? "Home" : "All Artists";
             {pageLabel}
           </h1>
           
-          {(profile?.tags || category?.tags) && (
+          {(profile?.tags ?? category?.tags ?? []).length > 0 && (
             <div class="flex flex-wrap gap-2">
-              {(profile?.tags || category?.tags).map(tag => (
+              {(profile?.tags ?? category?.tags ?? []).map((tag) => (
                 <span class="text-[8px] md:text-[10px] uppercase tracking-[0.2em] border border-white/20 px-2 py-1 text-neutral-400">{tag}</span>
               ))}
             </div>

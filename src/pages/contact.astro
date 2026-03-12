@@ -53,8 +53,8 @@ import { contacts, socialLinks } from "../data/siteContent";
         <ul class="space-y-2">
           {socialLinks.map((link) => (
             <li>
-              <a href={link.url} target="_blank" rel="noopener noreferrer" class="group flex items-center gap-2 text-sm text-neutral-400 hover:text-white transition-colors">
-                <span>{link.platform}</span>
+              <a href={link.href} target="_blank" rel="noopener noreferrer" class="group flex items-center gap-2 text-sm text-neutral-400 hover:text-white transition-colors">
+                <span>{link.label}</span>
                 <span class="text-[10px] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all">↗</span>
               </a>
             </li>

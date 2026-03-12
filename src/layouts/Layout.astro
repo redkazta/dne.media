@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 import { contacts, primaryNav, socialLinks } from "../data/siteContent";
 
@@ -19,20 +19,22 @@ const { title } = Astro.props;
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body class="bg-black text-neutral-200 antialiased selection:bg-white selection:text-black">
     <!-- Noise Texture -->
     <div class="fixed inset-0 z-50 pointer-events-none opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
     
     <!-- Header -->
-    <header class="fixed top-0 z-40 w-full mix-blend-difference">
+    <header class="fixed top-0 z-50 w-full mix-blend-difference">
       <div class="mx-auto flex h-14 w-full max-w-[1920px] items-center justify-between px-4 md:px-8">
-        <a href="/" class="text-xs font-bold tracking-[0.2em] text-white uppercase hover:opacity-70 transition-opacity">
+        <a href="/" class="relative z-50 text-xs font-bold tracking-[0.2em] text-white uppercase hover:opacity-70 transition-opacity">
           DNE Media
         </a>
-        <nav>
-          <ul class="flex items-center gap-4 md:gap-8">
+        
+        <!-- Desktop Nav -->
+        <nav class="hidden md:block">
+          <ul class="flex items-center gap-8">
             {primaryNav.map((item) => (
               <li>
                 <a href={item.href} class="text-[10px] font-medium tracking-[0.2em] text-white/70 uppercase transition-colors hover:text-white">
@@ -42,13 +44,110 @@ const { title } = Astro.props;
             ))}
           </ul>
         </nav>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-toggle" class="group relative z-50 flex h-3 w-5 flex-col justify-between md:hidden" aria-label="Toggle Menu">
+          <span class="h-[1px] w-full bg-white transition-transform duration-300 origin-right"></span>
+          <span class="h-[1px] w-full bg-white transition-opacity duration-300"></span>
+          <span class="h-[1px] w-full bg-white transition-transform duration-300 origin-right"></span>
+        </button>
       </div>
     </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 flex translate-x-full flex-col justify-center bg-black transition-transform duration-500 md:hidden">
+       <nav class="flex flex-col items-start px-8 gap-6">
+          {primaryNav.map((item, index) => (
+            <a 
+              href={item.href} 
+              class="text-2xl font-serif text-white/80 hover:text-white transition-colors tracking-tight opacity-0 translate-y-4 transition-all duration-500"
+              style={`transition-delay: ${index * 50}ms`}
+            >
+              {item.label}
+            </a>
+          ))}
+       </nav>
+       
+       <div class="absolute bottom-12 left-8 right-8 border-t border-white/10 pt-6">
+          <div class="flex flex-col gap-4">
+             {contacts.slice(0, 1).map(c => (
+                <a href={`mailto:${c.email}`} class="text-xs text-neutral-500">{c.email}</a>
+             ))}
+             <div class="flex gap-4">
+                {socialLinks.map(s => (
+                   <a href={s.href} target="_blank" class="text-xs uppercase tracking-widest text-white/50">{s.label}</a>
+                ))}
+             </div>
+          </div>
+       </div>
+    </div>
 
     <!-- Main Content -->
     <main class="mx-auto min-h-screen w-full max-w-[1920px] px-4 pt-16 md:px-8 md:pt-20 pb-12">
       <slot />
     </main>
+
+    <script>
+      function setupMenu() {
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const spans = menuToggle?.querySelectorAll('span');
+        const navLinks = mobileMenu?.querySelectorAll('nav a');
+        let isOpen = false;
+
+        function toggleMenu() {
+          isOpen = !isOpen;
+          
+          if (isOpen) {
+            mobileMenu?.classList.remove('translate-x-full');
+            document.body.style.overflow = 'hidden';
+            
+            // Animate Button
+            if (spans) {
+              spans[0].style.transform = 'rotate(-45deg) translateY(0px)';
+              spans[1].style.opacity = '0';
+              spans[2].style.transform = 'rotate(45deg) translateY(0px)';
+            }
+
+            // Animate Links
+            navLinks?.forEach(link => {
+               link.classList.remove('opacity-0', 'translate-y-4');
+            });
+
+          } else {
+            mobileMenu?.classList.add('translate-x-full');
+            document.body.style.overflow = '';
+            
+            // Reset Button
+            if (spans) {
+              spans[0].style.transform = '';
+              spans[1].style.opacity = '1';
+              spans[2].style.transform = '';
+            }
+
+            // Reset Links
+            navLinks?.forEach(link => {
+               link.classList.add('opacity-0', 'translate-y-4');
+            });
+          }
+        }
+
+        menuToggle?.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking a link
+        navLinks?.forEach(link => {
+          link.addEventListener('click', () => {
+             if (isOpen) toggleMenu();
+          });
+        });
+      }
+
+      // Run on initial load
+      setupMenu();
+
+      // Run on View Transitions navigation
+      document.addEventListener('astro:page-load', setupMenu);
+    </script>
 
     <!-- Footer -->
     <footer class="border-t border-white/10 bg-black py-12">
