@@ -457,7 +457,7 @@ export const contacts: ContactProfile[] = [
   {
     name: "Daniel Montiel",
     email: "daniel@dne.media",
-    role: "MEDIA CREATIVE DIRECTOR",
+    role: "CO OWNER",
     bio: "Daniel leads creative strategy, direction and artist-facing production. He works across campaign design, live execution and long-term creative development for DNE Media projects.",
     socials: [
       { label: "Email", href: "mailto:daniel@dne.media" },
