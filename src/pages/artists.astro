@@ -5,21 +5,21 @@ import { managementProfiles, roster } from "../data/siteContent";
 
 <Layout title="Artists | DNE Media">
   
-  <div class="mb-24">
-    <h1 class="font-serif text-5xl md:text-7xl text-white mb-8 tracking-tighter">
+  <div class="mb-12 border-b border-white/10 pb-6">
+    <h1 class="font-serif text-3xl md:text-4xl text-white mb-2 tracking-tighter">
       Management
     </h1>
-    <p class="text-neutral-500 max-w-2xl text-lg font-light leading-relaxed">
-      Representing a curated roster of exceptional talent across music and entertainment.
+    <p class="text-neutral-500 max-w-2xl text-sm font-light leading-relaxed">
+      Curated roster of exceptional talent.
     </p>
   </div>
 
   <!-- Management Grid -->
-  <section class="mb-32">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+  <section class="mb-16">
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-8">
       {managementProfiles.map((profile) => (
         <a href={`/${profile.slug}`} class="group block">
-          <div class="relative aspect-[3/4] w-full overflow-hidden bg-neutral-900 mb-6">
+          <div class="relative aspect-[3/4] w-full overflow-hidden bg-neutral-900 mb-3">
             <img 
               src={profile.image} 
               alt={profile.label} 
@@ -29,13 +29,13 @@ import { managementProfiles, roster } from "../data/siteContent";
             <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
           </div>
           
-          <div class="flex flex-col gap-1">
-            <h2 class="font-serif text-2xl text-white group-hover:text-neutral-300 transition-colors">
+          <div class="flex flex-col gap-0.5">
+            <h2 class="font-serif text-base text-white group-hover:text-neutral-300 transition-colors leading-tight">
               {profile.label}
             </h2>
             
             {profile.tags && (
-              <p class="text-xs uppercase tracking-[0.2em] text-neutral-500 group-hover:text-neutral-400 transition-colors">
+              <p class="text-[10px] uppercase tracking-[0.2em] text-neutral-500 group-hover:text-neutral-400 transition-colors">
                 {profile.tags[0]}
               </p>
             )}
@@ -45,20 +45,18 @@ import { managementProfiles, roster } from "../data/siteContent";
     </div>
   </section>
 
-  <div class="w-full h-[1px] bg-white/10 mb-24"></div>
-
   <!-- Roster List -->
-  <section class="mb-20">
-    <div class="grid lg:grid-cols-12 gap-12">
-      <div class="lg:col-span-4">
-        <h2 class="text-xs font-bold tracking-[0.3em] uppercase text-neutral-500 sticky top-32">
+  <section class="mb-12 pt-8 border-t border-white/10">
+    <div class="grid lg:grid-cols-12 gap-8">
+      <div class="lg:col-span-3">
+        <h2 class="text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-500">
           Full Roster <span class="text-neutral-700 ml-2">({roster.length})</span>
         </h2>
       </div>
-      <div class="lg:col-span-8">
-        <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-4">
+      <div class="lg:col-span-9">
+        <ul class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-4 gap-y-2">
           {roster.map((artist) => (
-            <li class="text-sm text-neutral-400 hover:text-white transition-colors cursor-default tracking-wide">
+            <li class="text-xs text-neutral-400 hover:text-white transition-colors cursor-default tracking-wide">
               {artist}
             </li>
           ))}

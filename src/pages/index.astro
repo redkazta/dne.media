@@ -6,44 +6,36 @@ import { aboutCopy, managementProfiles, portfolioCategories, services } from "..
 <Layout title="DNE Media | Production & Management">
   
   <!-- Hero Section -->
-  <section class="min-h-[80vh] flex flex-col justify-center relative">
+  <section class="py-12 md:py-20 flex flex-col justify-center relative border-b border-white/10 mb-12">
     <div class="max-w-4xl">
-      <span class="block mb-6 text-xs font-bold tracking-[0.3em] uppercase text-neutral-500 animate-fade-in">
+      <span class="block mb-4 text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-500 animate-fade-in">
         Global Production & Management
       </span>
-      <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.9] text-white tracking-tighter mb-8 animate-fade-in delay-100">
+      <h1 class="font-serif text-3xl md:text-5xl lg:text-6xl leading-[1.1] text-white tracking-tighter mb-6 animate-fade-in delay-100">
         {aboutCopy[0]}
       </h1>
-      <p class="max-w-xl text-base md:text-lg text-neutral-400 font-light leading-relaxed animate-fade-in delay-200">
+      <p class="max-w-xl text-sm md:text-base text-neutral-400 font-light leading-relaxed animate-fade-in delay-200">
         {aboutCopy[1]}
       </p>
     </div>
-
-    <!-- Scroll Indicator -->
-    <div class="absolute bottom-0 right-0 hidden md:flex items-center gap-4 animate-fade-in delay-500">
-      <span class="text-[10px] tracking-[0.3em] uppercase text-neutral-600">Scroll</span>
-      <div class="h-[1px] w-12 bg-neutral-800"></div>
-    </div>
   </section>
 
-  <div class="w-full h-[1px] bg-white/10 my-24"></div>
-
   <!-- Services Section -->
-  <section class="mb-32">
-    <div class="grid gap-16 lg:grid-cols-12">
-      <div class="lg:col-span-4">
-        <h2 class="text-xs font-bold tracking-[0.3em] uppercase text-neutral-500 sticky top-32">
+  <section class="mb-16">
+    <div class="grid gap-8 lg:grid-cols-12">
+      <div class="lg:col-span-3">
+        <h2 class="text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-500 sticky top-24">
           Services
         </h2>
       </div>
-      <div class="lg:col-span-8">
-        <div class="grid gap-x-12 gap-y-16 md:grid-cols-2">
+      <div class="lg:col-span-9">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
           {services.map((service, index) => (
-            <div class="group border-t border-white/10 pt-6 transition-colors hover:border-white/40">
-              <span class="block mb-4 text-xs font-mono text-neutral-600 group-hover:text-white transition-colors">
+            <div class="group border-t border-white/10 pt-4 transition-colors hover:border-white/40">
+              <span class="block mb-2 text-[10px] font-mono text-neutral-600 group-hover:text-white transition-colors">
                 0{index + 1}
               </span>
-              <h3 class="text-2xl md:text-3xl font-serif text-neutral-300 group-hover:text-white transition-colors">
+              <h3 class="text-base md:text-lg font-serif text-neutral-300 group-hover:text-white transition-colors leading-tight">
                 {service}
               </h3>
             </div>
@@ -54,28 +46,27 @@ import { aboutCopy, managementProfiles, portfolioCategories, services } from "..
   </section>
 
   <!-- Portfolio Section -->
-  <section class="mb-32">
-    <div class="grid gap-16 lg:grid-cols-12">
-      <div class="lg:col-span-4">
-        <h2 class="text-xs font-bold tracking-[0.3em] uppercase text-neutral-500 sticky top-32">
+  <section class="mb-16">
+    <div class="grid gap-8 lg:grid-cols-12">
+      <div class="lg:col-span-3">
+        <h2 class="text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-500 sticky top-24">
           Selected Work
         </h2>
       </div>
-      <div class="lg:col-span-8">
-        <div class="grid gap-8 md:grid-cols-2">
+      <div class="lg:col-span-9">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {portfolioCategories.map((category, i) => (
-            <a href={`/${category.slug}`} class={`group block ${i % 2 === 1 ? 'md:mt-16' : ''}`}>
-              <div class="relative aspect-[3/4] overflow-hidden bg-neutral-900 mb-4">
+            <a href={`/${category.slug}`} class="group block">
+              <div class="relative aspect-[4/5] overflow-hidden bg-neutral-900 mb-3">
                 <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-                <!-- Placeholder for category image if we had one, using generic gradient for now or just text -->
                 <div class="absolute inset-0 flex items-center justify-center bg-neutral-900 border border-white/5 group-hover:border-white/20 transition-colors">
-                  <span class="text-xs tracking-[0.2em] uppercase text-neutral-500 group-hover:text-white transition-colors">View Project</span>
+                  <span class="text-[10px] tracking-[0.2em] uppercase text-neutral-500 group-hover:text-white transition-colors">View</span>
                 </div>
               </div>
-              <h3 class="text-xl font-serif text-white group-hover:text-neutral-300 transition-colors">
+              <h3 class="text-sm font-serif text-white group-hover:text-neutral-300 transition-colors">
                 {category.label}
               </h3>
-              <p class="text-xs text-neutral-500 uppercase tracking-wider mt-1">Portfolio</p>
+              <p class="text-[10px] text-neutral-500 uppercase tracking-wider mt-0.5">Portfolio</p>
             </a>
           ))}
         </div>
@@ -84,20 +75,20 @@ import { aboutCopy, managementProfiles, portfolioCategories, services } from "..
   </section>
 
   <!-- Management Section -->
-  <section class="mb-32">
-    <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-      <h2 class="text-4xl md:text-6xl font-serif text-white leading-none">
-        Management <br /> <span class="text-neutral-600">Roster</span>
+  <section class="mb-16">
+    <div class="flex flex-row justify-between items-end mb-8 gap-4 border-b border-white/10 pb-4">
+      <h2 class="text-2xl md:text-3xl font-serif text-white leading-none">
+        Management
       </h2>
-      <a href="/artists" class="text-xs font-bold tracking-[0.2em] uppercase text-white border-b border-white/30 pb-1 hover:border-white transition-colors">
-        View All Artists
+      <a href="/artists" class="text-[10px] font-bold tracking-[0.2em] uppercase text-white/50 hover:text-white transition-colors">
+        View All →
       </a>
     </div>
 
-    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-      {managementProfiles.slice(0, 3).map((profile) => (
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+      {managementProfiles.slice(0, 4).map((profile) => (
         <a href={`/${profile.slug}`} class="group block">
-          <div class="relative aspect-[3/4] overflow-hidden bg-neutral-900 mb-4">
+          <div class="relative aspect-[3/4] overflow-hidden bg-neutral-900 mb-3">
             <img 
               src={profile.image} 
               alt={profile.label} 
@@ -107,10 +98,9 @@ import { aboutCopy, managementProfiles, portfolioCategories, services } from "..
             <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
           </div>
           <div class="flex justify-between items-baseline">
-            <h3 class="text-lg font-medium text-white group-hover:text-neutral-300 transition-colors">
+            <h3 class="text-sm font-medium text-white group-hover:text-neutral-300 transition-colors">
               {profile.label}
             </h3>
-            <span class="text-[10px] tracking-widest uppercase text-neutral-500">Exclusive</span>
           </div>
         </a>
       ))}

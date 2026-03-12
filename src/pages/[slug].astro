@@ -25,19 +25,19 @@ const backText = category ? "Home" : "All Artists";
 ---
 
 <Layout title={pageTitle}>
-  <div class="mb-12">
-    <a href={backLink} class="group inline-flex items-center text-xs uppercase tracking-[0.2em] text-neutral-500 transition-colors hover:text-white">
-      <span class="mr-3 transition-transform group-hover:-translate-x-1">←</span> {backText}
+  <div class="mb-8">
+    <a href={backLink} class="group inline-flex items-center text-[10px] uppercase tracking-[0.2em] text-neutral-500 transition-colors hover:text-white">
+      <span class="mr-2 transition-transform group-hover:-translate-x-1">←</span> {backText}
     </a>
   </div>
 
   {profile || category ? (
-    <div class="grid gap-12 lg:grid-cols-12 lg:gap-24">
+    <div class="grid gap-8 lg:grid-cols-12 lg:gap-16">
       
       <!-- Image Column (Sticky on Desktop) -->
-      <div class="lg:col-span-5">
-        <div class="sticky top-32">
-          <div class="relative aspect-[3/4] w-full overflow-hidden bg-neutral-900 mb-8">
+      <div class="lg:col-span-4">
+        <div class="sticky top-24">
+          <div class="relative aspect-[3/4] w-full overflow-hidden bg-neutral-900 mb-6">
             {(profile?.image || category?.image) ? (
               <img 
                 src={profile?.image || category?.image} 
@@ -47,18 +47,18 @@ const backText = category ? "Home" : "All Artists";
               />
             ) : (
               <div class="absolute inset-0 flex items-center justify-center text-neutral-700">
-                <span class="text-xs tracking-widest uppercase">No Image</span>
+                <span class="text-[10px] tracking-widest uppercase">No Image</span>
               </div>
             )}
           </div>
           
           {profile?.socials && (
-            <div class="flex flex-col gap-4 border-t border-white/10 pt-6">
+            <div class="flex flex-col gap-3 border-t border-white/10 pt-4">
               <h3 class="text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-600">Connect</h3>
-              <div class="flex flex-wrap gap-6">
+              <div class="flex flex-wrap gap-4">
                 {profile.socials.map(social => (
-                  <a href={social.url} target="_blank" rel="noopener noreferrer" class="text-xs uppercase tracking-widest text-neutral-400 transition-colors hover:text-white flex items-center gap-2">
-                    {social.label} <span class="text-[8px] opacity-50">↗</span>
+                  <a href={social.url} target="_blank" rel="noopener noreferrer" class="text-[10px] uppercase tracking-widest text-neutral-400 transition-colors hover:text-white flex items-center gap-1">
+                    {social.label} <span class="opacity-50">↗</span>
                   </a>
                 ))}
               </div>
@@ -68,23 +68,23 @@ const backText = category ? "Home" : "All Artists";
       </div>
       
       <!-- Content Column -->
-      <div class="lg:col-span-7 flex flex-col justify-center">
-        <div class="mb-12">
-          <p class="mb-4 text-xs font-bold tracking-[0.3em] uppercase text-neutral-500">{typeLabel}</p>
-          <h1 class="font-serif text-5xl md:text-7xl leading-none text-white tracking-tighter mb-6">
+      <div class="lg:col-span-8 flex flex-col justify-start pt-2">
+        <div class="mb-8">
+          <p class="mb-2 text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-500">{typeLabel}</p>
+          <h1 class="font-serif text-3xl md:text-5xl leading-none text-white tracking-tighter mb-4">
             {pageLabel}
           </h1>
           
           {(profile?.tags || category?.tags) && (
-            <div class="flex flex-wrap gap-3">
+            <div class="flex flex-wrap gap-2">
               {(profile?.tags || category?.tags).map(tag => (
-                <span class="text-[10px] uppercase tracking-[0.2em] border border-white/20 px-3 py-1 text-neutral-400">{tag}</span>
+                <span class="text-[10px] uppercase tracking-[0.2em] border border-white/20 px-2 py-1 text-neutral-400">{tag}</span>
               ))}
             </div>
           )}
         </div>
 
-        <div class="prose prose-invert prose-lg max-w-none text-neutral-400 font-light leading-relaxed">
+        <div class="prose prose-invert prose-sm md:prose-base max-w-none text-neutral-400 font-light leading-relaxed">
           <p class="whitespace-pre-line">
             {profile?.bio || category?.description || "Content coming soon."}
           </p>
@@ -93,9 +93,9 @@ const backText = category ? "Home" : "All Artists";
 
     </div>
   ) : (
-    <div class="min-h-[50vh] flex flex-col justify-center items-center text-center">
-       <h1 class="font-serif text-4xl md:text-6xl text-white mb-4">{pageLabel}</h1>
-       <p class="text-neutral-500 text-xs tracking-widest uppercase">Page under construction</p>
+    <div class="min-h-[40vh] flex flex-col justify-center items-center text-center">
+       <h1 class="font-serif text-3xl md:text-5xl text-white mb-4">{pageLabel}</h1>
+       <p class="text-neutral-500 text-[10px] tracking-widest uppercase">Page under construction</p>
     </div>
   )}
 </Layout>

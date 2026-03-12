@@ -5,26 +5,26 @@ import { contacts, socialLinks } from "../data/siteContent";
 
 <Layout title="Contact | DNE Media">
   
-  <div class="mb-24">
-    <h1 class="font-serif text-5xl md:text-7xl text-white mb-8 tracking-tighter">
+  <div class="mb-12 border-b border-white/10 pb-6">
+    <h1 class="font-serif text-3xl md:text-4xl text-white mb-2 tracking-tighter">
       Contact
     </h1>
-    <p class="text-neutral-500 max-w-2xl text-lg font-light leading-relaxed">
-      For inquiries regarding our roster or services, please reach out directly.
+    <p class="text-neutral-500 max-w-2xl text-sm font-light leading-relaxed">
+      Reach out for inquiries.
     </p>
   </div>
 
-  <div class="grid gap-16 lg:grid-cols-12 lg:gap-24 mb-32">
+  <div class="grid gap-12 lg:grid-cols-4 mb-16">
     
-    <!-- Emails Column -->
-    <div class="lg:col-span-8">
-      <div class="grid gap-16">
+    <!-- Emails -->
+    <div class="lg:col-span-3">
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {contacts.map((contact) => (
-          <div class="group">
-            <p class="text-xs font-bold tracking-[0.3em] uppercase text-neutral-500 mb-4">
+          <div class="group border-t border-white/5 pt-4">
+            <p class="text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-500 mb-2">
               {contact.role || contact.name}
             </p>
-            <a href={`mailto:${contact.email}`} class="block font-serif text-3xl md:text-5xl lg:text-6xl text-white hover:text-neutral-400 transition-colors break-words">
+            <a href={`mailto:${contact.email}`} class="block font-serif text-lg md:text-xl text-white hover:text-neutral-400 transition-colors break-words">
               {contact.email}
             </a>
           </div>
@@ -32,31 +32,30 @@ import { contacts, socialLinks } from "../data/siteContent";
       </div>
     </div>
 
-    <!-- Info Column -->
-    <div class="lg:col-span-4 space-y-16">
+    <!-- Info -->
+    <div class="lg:col-span-1 space-y-8 border-t border-white/5 pt-4 lg:border-t-0 lg:pt-0 lg:border-l lg:pl-8 lg:border-white/5">
       
       <!-- Location -->
       <div>
-        <h3 class="text-xs font-bold tracking-[0.3em] uppercase text-neutral-500 mb-6">
+        <h3 class="text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-500 mb-2">
           Location
         </h3>
-        <p class="text-xl md:text-2xl font-serif text-white">
-          Mexico City <br />
-          <span class="text-neutral-500">Global</span>
+        <p class="text-base font-serif text-white">
+          Mexico City <span class="text-neutral-500">/ Global</span>
         </p>
       </div>
 
       <!-- Socials -->
       <div>
-        <h3 class="text-xs font-bold tracking-[0.3em] uppercase text-neutral-500 mb-6">
+        <h3 class="text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-500 mb-2">
           Social
         </h3>
-        <ul class="space-y-4">
+        <ul class="space-y-2">
           {socialLinks.map((link) => (
             <li>
-              <a href={link.url} target="_blank" rel="noopener noreferrer" class="group flex items-center gap-3 text-lg text-neutral-400 hover:text-white transition-colors">
+              <a href={link.url} target="_blank" rel="noopener noreferrer" class="group flex items-center gap-2 text-sm text-neutral-400 hover:text-white transition-colors">
                 <span>{link.platform}</span>
-                <span class="text-xs opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">↗</span>
+                <span class="text-[10px] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all">↗</span>
               </a>
             </li>
           ))}
