@@ -26,8 +26,8 @@ const { title } = Astro.props;
     <div class="fixed inset-0 z-50 pointer-events-none opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
     
     <!-- Header -->
-    <header class="fixed top-0 z-50 w-full mix-blend-difference">
-      <div class="mx-auto flex h-14 w-full max-w-[1920px] items-center justify-between px-4 md:px-8">
+    <header class="fixed top-0 z-50 w-full md:mix-blend-difference">
+      <div class="mx-auto flex h-14 w-full max-w-[1920px] items-center justify-between border-b border-white/10 bg-black/85 px-4 backdrop-blur md:border-0 md:bg-transparent md:px-8 md:backdrop-blur-none">
         <a href="/" class="relative z-50 text-xs font-bold tracking-[0.2em] text-white uppercase hover:opacity-70 transition-opacity">
           DNE Media
         </a>
@@ -55,31 +55,33 @@ const { title } = Astro.props;
     </header>
 
     <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 z-40 flex translate-x-full flex-col justify-center bg-black transition-transform duration-500 md:hidden">
-       <nav class="flex flex-col items-start px-8 gap-6">
+    <div id="mobile-menu" class="fixed inset-0 z-40 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden">
+      <button id="mobile-menu-backdrop" aria-label="Close menu" class="absolute inset-0 bg-black/60"></button>
+      <aside id="mobile-drawer" class="absolute inset-y-0 right-0 flex w-[82vw] max-w-xs translate-x-full flex-col border-l border-white/10 bg-neutral-950 px-6 pb-8 pt-20 transition-transform duration-300">
+        <nav class="flex flex-col items-start gap-5">
           {primaryNav.map((item, index) => (
             <a 
               href={item.href} 
-              class="text-2xl font-serif text-white/80 hover:text-white transition-colors tracking-tight opacity-0 translate-y-4 transition-all duration-500"
-              style={`transition-delay: ${index * 50}ms`}
+              class="text-xl font-serif text-white/80 hover:text-white transition-colors tracking-tight opacity-0 translate-y-4 transition-all duration-500"
+              style={`transition-delay: ${index * 40}ms`}
             >
               {item.label}
             </a>
           ))}
-       </nav>
-       
-       <div class="absolute bottom-12 left-8 right-8 border-t border-white/10 pt-6">
+        </nav>
+        <div class="mt-auto border-t border-white/10 pt-6">
           <div class="flex flex-col gap-4">
-             {contacts.slice(0, 1).map(c => (
-                <a href={`mailto:${c.email}`} class="text-xs text-neutral-500">{c.email}</a>
-             ))}
-             <div class="flex gap-4">
-                {socialLinks.map(s => (
-                   <a href={s.href} target="_blank" class="text-xs uppercase tracking-widest text-white/50">{s.label}</a>
-                ))}
-             </div>
+            {contacts.slice(0, 1).map((c) => (
+              <a href={`mailto:${c.email}`} class="text-xs text-neutral-400">{c.email}</a>
+            ))}
+            <div class="flex flex-wrap gap-4">
+              {socialLinks.map((s) => (
+                <a href={s.href} target="_blank" rel="noopener noreferrer" class="text-xs uppercase tracking-widest text-white/60">{s.label}</a>
+              ))}
+            </div>
           </div>
-       </div>
+        </div>
+      </aside>
     </div>
 
     <!-- Main Content -->
@@ -93,13 +95,20 @@ const { title } = Astro.props;
         const mobileMenu = document.getElementById('mobile-menu');
         const spans = menuToggle?.querySelectorAll('span');
         const navLinks = mobileMenu?.querySelectorAll('nav a');
+        const mobileDrawer = document.getElementById('mobile-drawer');
+        const mobileBackdrop = document.getElementById('mobile-menu-backdrop');
         let isOpen = false;
+        const menuBound = menuToggle?.getAttribute('data-menu-bound') === 'true';
+        if (menuBound) return;
+
+        menuToggle?.setAttribute('data-menu-bound', 'true');
 
         function toggleMenu() {
           isOpen = !isOpen;
           
           if (isOpen) {
-            mobileMenu?.classList.remove('translate-x-full');
+            mobileMenu?.classList.remove('opacity-0', 'pointer-events-none');
+            mobileDrawer?.classList.remove('translate-x-full');
             document.body.style.overflow = 'hidden';
             
             // Animate Button
@@ -115,7 +124,8 @@ const { title } = Astro.props;
             });
 
           } else {
-            mobileMenu?.classList.add('translate-x-full');
+            mobileMenu?.classList.add('opacity-0', 'pointer-events-none');
+            mobileDrawer?.classList.add('translate-x-full');
             document.body.style.overflow = '';
             
             // Reset Button
@@ -133,6 +143,9 @@ const { title } = Astro.props;
         }
 
         menuToggle?.addEventListener('click', toggleMenu);
+        mobileBackdrop?.addEventListener('click', () => {
+          if (isOpen) toggleMenu();
+        });
 
         // Close menu when clicking a link
         navLinks?.forEach(link => {

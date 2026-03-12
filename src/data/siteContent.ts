@@ -415,14 +415,48 @@ export const managementProfiles: ArtistProfile[] = [
   }
 ];
 
-export const contacts = [
-  { name: "Daniel Montiel", email: "daniel@dne.media" },
-  { name: "Enrique Ramirez", email: "enrique@dne.media" },
-  { name: "Angel", email: "angel@dne.media", role: "System Administrator" }
+export interface ContactProfile {
+  name: string;
+  email: string;
+  role?: string;
+  bio: string;
+  socials?: { label: string; href: string }[];
+}
+
+export const contacts: ContactProfile[] = [
+  {
+    name: "Daniel Montiel",
+    email: "daniel@dne.media",
+    bio: "Daniel leads creative strategy, direction and artist-facing production. He works across campaign design, live execution and long-term creative development for DNE Media projects.",
+    socials: [
+      { label: "Email", href: "mailto:daniel@dne.media" },
+      { label: "Instagram", href: "https://www.instagram.com/dne.media" }
+    ]
+  },
+  {
+    name: "Enrique Ramirez",
+    email: "enrique@dne.media",
+    bio: "Enrique coordinates production workflows, schedules and delivery. He ensures every project runs on time and that communication between artists, clients and crew stays tight.",
+    socials: [
+      { label: "Email", href: "mailto:enrique@dne.media" },
+      { label: "Instagram", href: "https://www.instagram.com/dne.media" }
+    ]
+  },
+  {
+    name: "Angel",
+    email: "angel@dne.media",
+    role: "System Administrator",
+    bio: "Angel manages the technical backbone of DNE Media, from infrastructure and automation to internal systems, helping keep the team stable, secure and always online.",
+    socials: [
+      { label: "Email", href: "mailto:angel@dne.media" },
+      { label: "Instagram", href: "https://www.instagram.com/dne.media" }
+    ]
+  }
 ];
 
 export const socialLinks = [
-  { label: "Instagram", href: "https://www.instagram.com/dne.media" }
+  { label: "Instagram", href: "https://www.instagram.com/dne.media" },
+  { label: "Email", href: "mailto:daniel@dne.media" }
 ];
 
 export const primaryNav = [

@@ -38,7 +38,7 @@ const categoryMedia = category ? categoryMediaBySlug[category.slug] ?? [] : [];
       <!-- Image Column (Sticky on Desktop) -->
       <div class="lg:col-span-4">
         <div class="sticky top-20">
-          <div class="relative aspect-[3/4] w-full overflow-hidden bg-neutral-900 mb-4 md:mb-6">
+          <div class="relative aspect-[4/5] md:aspect-[3/4] w-full overflow-hidden bg-neutral-900 mb-4 md:mb-6">
             {(profile?.image || category?.image) ? (
               <img 
                 src={profile?.image || category?.image} 
@@ -97,7 +97,7 @@ const categoryMedia = category ? categoryMediaBySlug[category.slug] ?? [] : [];
               <p class="text-[8px] md:text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-500">Media</p>
               <p class="text-[8px] md:text-[10px] uppercase tracking-[0.2em] text-neutral-600">{categoryMedia.length} items</p>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
+            <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-3">
               {categoryMedia.map((item) => (
                 <a href={item} target="_blank" rel="noopener noreferrer" class="group block">
                   <div class="relative aspect-[4/5] overflow-hidden bg-neutral-900">
