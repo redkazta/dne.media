@@ -1,51 +1,69 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { aboutCopy, services } from "../data/siteContent";
+import { aboutCopy, managementProfiles, portfolioCategories, roster, services } from "../data/siteContent";
 ---
 
 <Layout title="About | DNE Media">
-  <section class="relative min-h-[50vh] flex flex-col justify-end pb-12 overflow-hidden">
-    <!-- Ambient Background -->
-    <div class="absolute top-[-10%] left-[-10%] h-[600px] w-[600px] rounded-full bg-white/[0.03] blur-[120px] pointer-events-none"></div>
-
-    <div class="max-w-4xl relative z-10">
-      <p class="mb-4 text-xs font-bold tracking-[0.3em] uppercase text-white/50 animate-fade-in">Our Story</p>
-      <h1 class="font-serif text-3xl leading-tight text-white md:text-4xl lg:text-5xl text-balance tracking-tighter">
-        <span class="block animate-fade-in delay-100">Visionaries.</span>
-        <span class="block animate-fade-in delay-200">Creators.</span>
-        <span class="block animate-fade-in delay-300 text-white/50">Partners.</span>
-      </h1>
+  <section class="mb-8 border-b border-white/10 pb-8 pt-2">
+    <div class="grid gap-6 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <p class="mb-3 text-[8px] font-bold tracking-[0.3em] uppercase text-white/50">About DNE Media</p>
+        <h1 class="font-serif text-2xl leading-tight text-white md:text-4xl lg:text-5xl tracking-tighter">
+          Full-service production studio and talent management agency.
+        </h1>
+        <p class="mt-4 max-w-3xl text-xs leading-relaxed text-white/75 md:text-sm">
+          {aboutCopy[0]} {aboutCopy[1]}
+        </p>
+      </div>
+      <div class="grid grid-cols-2 gap-2 sm:gap-3 lg:col-span-5">
+        <div class="border border-white/10 bg-neutral-950/60 p-3">
+          <p class="text-[8px] uppercase tracking-[0.2em] text-neutral-500">Services</p>
+          <p class="mt-1 font-serif text-2xl text-white">{services.length}</p>
+        </div>
+        <div class="border border-white/10 bg-neutral-950/60 p-3">
+          <p class="text-[8px] uppercase tracking-[0.2em] text-neutral-500">Roster</p>
+          <p class="mt-1 font-serif text-2xl text-white">{roster.length}+</p>
+        </div>
+        <div class="border border-white/10 bg-neutral-950/60 p-3">
+          <p class="text-[8px] uppercase tracking-[0.2em] text-neutral-500">Media Lines</p>
+          <p class="mt-1 font-serif text-2xl text-white">{portfolioCategories.length}</p>
+        </div>
+        <div class="border border-white/10 bg-neutral-950/60 p-3">
+          <p class="text-[8px] uppercase tracking-[0.2em] text-neutral-500">Managed Artists</p>
+          <p class="mt-1 font-serif text-2xl text-white">{managementProfiles.length}</p>
+        </div>
+      </div>
     </div>
   </section>
-  
-  <div class="mb-16 border-b border-white/10"></div>
 
-  <section class="grid gap-10 lg:grid-cols-[1fr_2fr] mb-20">
-    <h2 class="font-serif text-2xl text-white/50 md:text-3xl sticky top-24 self-start mix-blend-difference animate-fade-in">The Studio</h2>
-    <div class="space-y-8 text-base leading-relaxed text-white/80 md:text-lg font-light animate-fade-in delay-200">
-      <p>{aboutCopy[0]}</p>
-      <p>{aboutCopy[1]}</p>
+  <section class="mb-10 grid gap-6 lg:grid-cols-[240px_1fr]">
+    <h2 class="font-serif text-xl text-white/60 md:text-2xl">The Studio</h2>
+    <div class="space-y-4 text-sm leading-relaxed text-white/80 md:text-base">
       <p>{aboutCopy[2]}</p>
-      
-      <div class="relative my-12 py-8">
-        <div class="absolute inset-0 -skew-y-2 bg-white/[0.02]"></div>
-        <p class="relative font-serif text-2xl italic text-white md:text-3xl leading-tight text-center px-4">"{aboutCopy[5]}"</p>
-      </div>
-
       <p>{aboutCopy[3]}</p>
       <p>{aboutCopy[4]}</p>
+      <p class="border-l border-white/20 pl-3 font-serif text-lg italic text-white">"{aboutCopy[5]}"</p>
     </div>
   </section>
 
-  <section class="grid gap-10 lg:grid-cols-[1fr_2fr] mb-20">
-    <h2 class="font-serif text-2xl text-white/50 md:text-3xl sticky top-24 self-start mix-blend-difference">Capabilities</h2>
-    <ul class="space-y-px border-t border-white/10">
+  <section class="mb-10 grid gap-6 lg:grid-cols-[240px_1fr]">
+    <h2 class="font-serif text-xl text-white/60 md:text-2xl">Capabilities</h2>
+    <ul class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
       {services.map((service, i) => (
-        <li class="group flex items-center justify-between border-b border-white/10 py-6 transition-all duration-500 hover:bg-white/[0.02] hover:pl-4">
-          <span class="text-xl text-white/90 font-light md:text-2xl transition-colors group-hover:text-white">{service}</span>
-          <span class="text-[10px] tracking-widest text-white/30 opacity-0 transition-all duration-300 group-hover:opacity-100">0{i + 1}</span>
+        <li class="group flex items-center justify-between border border-white/10 bg-neutral-950/60 px-3 py-2 transition-colors hover:border-white/35">
+          <span class="text-xs text-white/90 md:text-sm">{service}</span>
+          <span class="text-[9px] tracking-[0.2em] text-white/35">{String(i + 1).padStart(2, "0")}</span>
         </li>
       ))}
     </ul>
+  </section>
+
+  <section class="mb-6 grid gap-6 lg:grid-cols-[240px_1fr]">
+    <h2 class="font-serif text-xl text-white/60 md:text-2xl">Selected Roster</h2>
+    <div class="grid grid-cols-2 gap-2 text-[10px] uppercase tracking-[0.15em] text-neutral-400 sm:grid-cols-3 lg:grid-cols-4">
+      {roster.slice(0, 24).map((artist) => (
+        <div class="border border-white/10 bg-neutral-950/60 px-2 py-2">{artist}</div>
+      ))}
+    </div>
   </section>
 </Layout>

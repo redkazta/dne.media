@@ -30,10 +30,11 @@ const embeddedVideos = categoryVideos
     if (!match) return null;
     return {
       source: url,
-      embed: `https://player.vimeo.com/video/${match[1]}`
+      embed: `https://player.vimeo.com/video/${match[1]}`,
+      thumbnail: `https://vumbnail.com/${match[1]}.jpg`
     };
   })
-  .filter((item): item is { source: string; embed: string } => item !== null);
+  .filter((item): item is { source: string; embed: string; thumbnail: string } => item !== null);
 ---
 
 <Layout title={pageTitle}>
@@ -108,25 +109,22 @@ const embeddedVideos = categoryVideos
               <p class="text-[8px] md:text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-500">Videos</p>
               <p class="text-[8px] md:text-[10px] uppercase tracking-[0.2em] text-neutral-600">{embeddedVideos.length} items</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
-              {embeddedVideos.map((video) => (
-                <article class="overflow-hidden border border-white/10 bg-neutral-950">
-                  <div class="aspect-video bg-neutral-900">
-                    <iframe
-                      src={video.embed}
-                      title={`${pageLabel} video`}
-                      loading="lazy"
-                      allow="autoplay; fullscreen; picture-in-picture"
-                      allowfullscreen
-                      class="h-full w-full"
-                    ></iframe>
+            <div class="grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-3">
+              {embeddedVideos.map((video, index) => (
+                <button
+                  class="group relative overflow-hidden border border-white/10 bg-neutral-950 text-left transition-colors hover:border-white/40"
+                  data-video-open
+                  data-video-src={video.embed}
+                  data-video-title={`${pageLabel} video ${index + 1}`}
+                >
+                  <div class="relative aspect-[4/5] bg-neutral-900">
+                    <img src={video.thumbnail} alt={`${pageLabel} video ${index + 1}`} loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <div class="absolute inset-0 bg-black/35 transition-colors group-hover:bg-black/20"></div>
+                    <div class="absolute left-1/2 top-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/60 bg-black/50 text-white">
+                      ▶
+                    </div>
                   </div>
-                  <div class="px-3 py-2">
-                    <a href={video.source} target="_blank" rel="noopener noreferrer" class="text-[9px] uppercase tracking-[0.2em] text-neutral-400 transition-colors hover:text-white">
-                      Open on Vimeo ↗
-                    </a>
-                  </div>
-                </article>
+                </button>
               ))}
             </div>
           </div>
@@ -159,4 +157,88 @@ const embeddedVideos = categoryVideos
        <p class="text-neutral-500 text-[10px] tracking-widest uppercase">Page under construction</p>
     </div>
   )}
+
+  <div id="video-modal" class="pointer-events-none fixed inset-0 z-[70] opacity-0 transition-opacity duration-200">
+    <button id="video-modal-backdrop" aria-label="Close video" class="absolute inset-0 bg-black/80"></button>
+    <div class="relative z-10 mx-auto flex h-full w-full max-w-5xl items-center px-4 md:px-8">
+      <div class="w-full overflow-hidden border border-white/20 bg-black">
+        <div class="flex items-center justify-between border-b border-white/10 px-3 py-2">
+          <p id="video-modal-title" class="text-[9px] uppercase tracking-[0.2em] text-neutral-400">Video</p>
+          <button id="video-modal-close" aria-label="Close video" class="text-lg leading-none text-white/70 transition-colors hover:text-white">×</button>
+        </div>
+        <div class="aspect-video w-full bg-black">
+          <iframe
+            id="video-modal-frame"
+            src=""
+            title="Video"
+            loading="lazy"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+            class="h-full w-full"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function setupVideoModal() {
+      const modal = document.getElementById("video-modal") as HTMLDivElement | null;
+      const frame = document.getElementById("video-modal-frame") as HTMLIFrameElement | null;
+      const title = document.getElementById("video-modal-title") as HTMLParagraphElement | null;
+      const close = document.getElementById("video-modal-close") as HTMLButtonElement | null;
+      const backdrop = document.getElementById("video-modal-backdrop") as HTMLButtonElement | null;
+      const triggers = Array.from(document.querySelectorAll("[data-video-open]")) as HTMLButtonElement[];
+
+      if (!modal || !frame || !title || !close || !backdrop || triggers.length === 0) return;
+      const safeModal = modal;
+      const safeFrame = frame;
+      const safeTitle = title;
+      const safeClose = close;
+      const safeBackdrop = backdrop;
+
+      function openModal(src: string, text: string) {
+        safeFrame.src = src;
+        safeTitle.textContent = text;
+        safeModal.classList.remove("opacity-0", "pointer-events-none");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        safeModal.classList.add("opacity-0", "pointer-events-none");
+        safeFrame.src = "";
+        document.body.style.overflow = "";
+      }
+
+      triggers.forEach((trigger) => {
+        if (trigger.getAttribute("data-video-bound") === "true") return;
+        trigger.setAttribute("data-video-bound", "true");
+        trigger.addEventListener("click", () => {
+          const src = trigger.getAttribute("data-video-src");
+          const text = trigger.getAttribute("data-video-title") ?? "Video";
+          if (src) openModal(src, text);
+        });
+      });
+
+      if (safeClose.getAttribute("data-video-bound") !== "true") {
+        safeClose.setAttribute("data-video-bound", "true");
+        safeClose.addEventListener("click", closeModal);
+      }
+
+      if (safeBackdrop.getAttribute("data-video-bound") !== "true") {
+        safeBackdrop.setAttribute("data-video-bound", "true");
+        safeBackdrop.addEventListener("click", closeModal);
+      }
+
+      if (document.body.getAttribute("data-video-escape-bound") !== "true") {
+        document.body.setAttribute("data-video-escape-bound", "true");
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") closeModal();
+        });
+      }
+    }
+
+    setupVideoModal();
+    document.addEventListener("astro:page-load", setupVideoModal);
+  </script>
 </Layout>
