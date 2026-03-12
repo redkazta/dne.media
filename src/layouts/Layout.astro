@@ -57,14 +57,14 @@ const { title } = Astro.props;
     </header>
 
     <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 z-40 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden">
-      <button id="mobile-menu-backdrop" aria-label="Close menu" class="absolute inset-0 bg-black/60"></button>
-      <aside id="mobile-drawer" class="absolute inset-y-0 right-0 flex w-[82vw] max-w-xs translate-x-full flex-col border-l border-white/10 bg-neutral-950 px-6 pb-8 pt-20 transition-transform duration-300">
+    <div id="mobile-menu" class="fixed inset-0 z-40 opacity-0 pointer-events-none transition-opacity duration-500 ease-out md:hidden">
+      <button id="mobile-menu-backdrop" aria-label="Close menu" class="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-500 ease-out"></button>
+      <aside id="mobile-drawer" class="absolute inset-y-0 right-0 flex w-[86vw] max-w-sm translate-x-full opacity-0 flex-col border-l border-white/10 bg-neutral-950 px-6 pb-8 pt-20 transition-all duration-500 ease-out">
         <nav class="flex flex-col items-start gap-5">
           {primaryNav.map((item, index) => (
             <a 
               href={item.href} 
-              class="text-xl font-serif text-white/80 hover:text-white transition-colors tracking-tight opacity-0 translate-y-4 transition-all duration-500"
+              class="text-xl font-serif text-white/80 hover:text-white transition-colors tracking-tight opacity-0 translate-y-6 transition-all duration-500"
               style={`transition-delay: ${index * 40}ms`}
             >
               {item.label}
@@ -72,9 +72,12 @@ const { title } = Astro.props;
           ))}
         </nav>
         <div class="mt-auto border-t border-white/10 pt-6">
-          <div class="flex flex-col gap-4">
-            {contacts.slice(0, 1).map((c) => (
-              <a href={`mailto:${c.email}`} class="text-xs text-neutral-400">{c.email}</a>
+          <div class="flex flex-col gap-3">
+            {contacts.map((c) => (
+              <a href={`mailto:${c.email}`} class="flex items-center justify-between border border-white/10 px-3 py-2 text-[10px] uppercase tracking-[0.15em] text-neutral-400 transition-colors hover:border-white/30 hover:text-white">
+                <span>{c.name}</span>
+                <span class="lowercase tracking-normal">{c.email}</span>
+              </a>
             ))}
             <div class="flex flex-wrap gap-4">
               {socialLinks.map((s) => (
@@ -110,7 +113,8 @@ const { title } = Astro.props;
           
           if (isOpen) {
             mobileMenu?.classList.remove('opacity-0', 'pointer-events-none');
-            mobileDrawer?.classList.remove('translate-x-full');
+            mobileDrawer?.classList.remove('translate-x-full', 'opacity-0');
+            mobileBackdrop?.classList.remove('opacity-0');
             document.body.style.overflow = 'hidden';
             
             // Animate Button
@@ -122,12 +126,13 @@ const { title } = Astro.props;
 
             // Animate Links
             navLinks?.forEach(link => {
-               link.classList.remove('opacity-0', 'translate-y-4');
+               link.classList.remove('opacity-0', 'translate-y-6');
             });
 
           } else {
             mobileMenu?.classList.add('opacity-0', 'pointer-events-none');
-            mobileDrawer?.classList.add('translate-x-full');
+            mobileDrawer?.classList.add('translate-x-full', 'opacity-0');
+            mobileBackdrop?.classList.add('opacity-0');
             document.body.style.overflow = '';
             
             // Reset Button
@@ -139,7 +144,7 @@ const { title } = Astro.props;
 
             // Reset Links
             navLinks?.forEach(link => {
-               link.classList.add('opacity-0', 'translate-y-4');
+               link.classList.add('opacity-0', 'translate-y-6');
             });
           }
         }

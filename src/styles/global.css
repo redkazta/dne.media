@@ -84,6 +84,30 @@ img[data-smart-image].is-loaded {
   transform: translateY(0);
 }
 
+.mobile-carousel {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding: 0 0.125rem 0.5rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.mobile-carousel {
+  scrollbar-width: none;
+}
+
+.mobile-carousel-item {
+  min-width: 78vw;
+  max-width: 78vw;
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
