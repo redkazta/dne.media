@@ -1,11 +1,62 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import { aboutCopy, managementProfiles, portfolioCategories, roster, services } from "../data/siteContent";
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="DNE Media">
+  <section class="grid gap-8 md:grid-cols-[1.2fr_1fr] md:items-end">
+    <div>
+      <p class="text-xs tracking-[0.28em] text-white/60">DNE MEDIA</p>
+      <h1 class="mt-4 text-4xl leading-tight md:text-6xl">A full-service production studio and talent management agency.</h1>
+      <p class="mt-4 max-w-2xl text-white/80">{aboutCopy[0]}</p>
+      <p class="mt-3 max-w-2xl text-white/70">{aboutCopy[1]}</p>
+    </div>
+    <div class="overflow-hidden rounded border border-white/15">
+      <img src="/hero-fallback.svg" alt="DNE Media visual placeholder" class="aspect-[16/10] w-full object-cover" loading="lazy" />
+    </div>
+  </section>
+
+  <section class="mt-16">
+    <h2 class="text-3xl md:text-4xl">Services</h2>
+    <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+      {services.map((service) => (
+        <li class="rounded border border-white/10 px-4 py-4 text-white/90">
+          {service}
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="mt-16">
+    <h2 class="text-3xl md:text-4xl">Portfolio Categories</h2>
+    <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {portfolioCategories.map((category) => (
+        <a href={`/${category.slug}`} class="inline-flex min-h-11 items-center justify-between rounded border border-white/10 px-4 py-4 text-white no-underline transition hover:border-white/40">
+          <span>{category.label}</span>
+          <span class="text-white/60">↗</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="mt-16">
+    <h2 class="text-3xl md:text-4xl">Management & Booking</h2>
+    <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {managementProfiles.map((profile) => (
+        <a href={`/${profile.slug}`} class="inline-flex min-h-11 items-center justify-between rounded border border-white/10 px-4 py-4 text-white no-underline transition hover:border-white/40">
+          <span>{profile.label}</span>
+          <span class="text-white/60">↗</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="mt-16">
+    <h2 class="text-3xl md:text-4xl">Artists / Roster</h2>
+    <ul class="mt-6 grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      {roster.map((artist) => (
+        <li class="rounded border border-white/10 px-3 py-3 text-sm text-white/85">{artist}</li>
+      ))}
+    </ul>
+  </section>
 </Layout>

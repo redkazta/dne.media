@@ -1,0 +1,37 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { managementProfiles, pages, portfolioCategories } from "../data/siteContent";
+
+export function getStaticPaths() {
+  const slugs = new Set([
+    ...portfolioCategories.map((item) => item.slug),
+    ...managementProfiles.map((item) => item.slug)
+  ]);
+
+  return Array.from(slugs).map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+
+const category = portfolioCategories.find((item) => item.slug === slug);
+const profile = managementProfiles.find((item) => item.slug === slug);
+const page = pages.find((item) => item.slug === slug);
+
+const pageLabel = category?.label ?? profile?.label ?? slug;
+const pageTitle = page?.title ?? `${pageLabel} | DNE Media`;
+const typeLabel = category ? "Portfolio" : "Artist";
+const pageLead = category
+  ? `A curated visual section for ${pageLabel} within DNE Media's portfolio categories.`
+  : `${pageLabel} is part of the artists and management network featured by DNE Media.`;
+---
+
+<Layout title={pageTitle}>
+  <section class="max-w-3xl">
+    <p class="text-xs tracking-[0.28em] text-white/60">{typeLabel.toUpperCase()}</p>
+    <h1 class="mt-4 text-4xl md:text-6xl">{pageLabel}</h1>
+    <p class="mt-5 text-white/75">{pageLead}</p>
+    <div class="mt-8 overflow-hidden rounded border border-white/15">
+      <img src="/hero-fallback.svg" alt={`${pageLabel} visual placeholder`} class="aspect-[16/9] w-full object-cover" loading="lazy" />
+    </div>
+  </section>
+</Layout>

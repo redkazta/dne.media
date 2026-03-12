@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  font-family: "Avenir Next", "Avenir", "Montserrat", "Futura", "Segoe UI", sans-serif;
+  background: #0a0a0a;
+  color: #ffffff;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Iowan Old Style", "Baskerville", "Times New Roman", serif;
+  letter-spacing: 0.01em;
+}

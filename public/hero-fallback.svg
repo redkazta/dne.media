@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="DNE Media visual placeholder">
+  <defs>
+    <linearGradient id="a" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#111111"/>
+      <stop offset="100%" stop-color="#1f1f1f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#a)"/>
+  <g fill="none" stroke="#2f2f2f" stroke-width="1">
+    <path d="M0 180h1600M0 360h1600M0 540h1600M0 720h1600"/>
+    <path d="M200 0v900M400 0v900M600 0v900M800 0v900M1000 0v900M1200 0v900M1400 0v900"/>
+  </g>
+  <text x="50%" y="52%" text-anchor="middle" fill="#ffffff" font-size="66" font-family="Georgia, ui-serif, serif" letter-spacing="4">
+    DNE MEDIA
+  </text>
+</svg>

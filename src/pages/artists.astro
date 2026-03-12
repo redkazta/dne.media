@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { managementProfiles, roster } from "../data/siteContent";
+---
+
+<Layout title="Artists | DNE Media">
+  <section>
+    <p class="text-xs tracking-[0.28em] text-white/60">ARTISTS</p>
+    <h1 class="mt-4 text-4xl md:text-6xl">Artists / Roster</h1>
+    <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {managementProfiles.map((profile) => (
+        <a href={`/${profile.slug}`} class="inline-flex min-h-11 items-center justify-between rounded border border-white/10 px-4 py-4 text-white no-underline transition hover:border-white/40">
+          <span>{profile.label}</span>
+          <span class="text-white/60">↗</span>
+        </a>
+      ))}
+    </div>
+    <ul class="mt-8 grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      {roster.map((artist) => (
+        <li class="rounded border border-white/10 px-3 py-3 text-sm text-white/85">{artist}</li>
+      ))}
+    </ul>
+  </section>
+</Layout>

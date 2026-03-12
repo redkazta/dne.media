@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { aboutCopy, services } from "../data/siteContent";
+---
+
+<Layout title="About | DNE Media">
+  <section>
+    <p class="text-xs tracking-[0.28em] text-white/60">ABOUT</p>
+    <h1 class="mt-4 text-4xl md:text-6xl">About DNE Media</h1>
+    <div class="mt-8 max-w-3xl space-y-5 text-lg text-white/85">
+      <p>{aboutCopy[0]}</p>
+      <p>{aboutCopy[1]}</p>
+      <p>{aboutCopy[2]}</p>
+    </div>
+    <ul class="mt-8 grid gap-3 sm:grid-cols-2">
+      {services.map((service) => (
+        <li class="rounded border border-white/10 px-4 py-4 text-white/90">{service}</li>
+      ))}
+    </ul>
+    <div class="mt-8 max-w-3xl space-y-5 text-lg text-white/85">
+      <p>{aboutCopy[3]}</p>
+      <p>{aboutCopy[4]}</p>
+      <p class="font-serif text-2xl text-white">{aboutCopy[5]}</p>
+    </div>
+  </section>
+</Layout>
