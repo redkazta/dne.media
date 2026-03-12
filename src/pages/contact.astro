@@ -4,45 +4,36 @@ import { contacts, socialLinks } from "../data/siteContent";
 ---
 
 <Layout title="Contact | DNE Media">
-  <section class="relative min-h-[30vh] flex flex-col justify-end pb-8 overflow-hidden">
-    <!-- Ambient Background -->
-    <div class="absolute bottom-[-20%] right-[-10%] h-[500px] w-[500px] rounded-full bg-white/[0.03] blur-[100px] pointer-events-none"></div>
+  <div class="pt-24 pb-12">
+    <h1 class="font-serif text-4xl md:text-6xl text-white mb-12">Contact</h1>
+    
+    <div class="grid gap-16 md:grid-cols-2">
+      <div class="space-y-12">
+        {contacts.map((contact) => (
+          <div>
+            <p class="text-[9px] uppercase tracking-[0.3em] text-white/40 mb-2">
+              {contact.name}
+            </p>
+            {contact.role && (
+              <p class="text-[9px] uppercase tracking-[0.2em] text-white/20 mb-2">{contact.role}</p>
+            )}
+            <a href={`mailto:${contact.email}`} class="block font-serif text-2xl md:text-3xl text-white hover:opacity-70 transition-opacity break-all">
+              {contact.email}
+            </a>
+          </div>
+        ))}
+      </div>
 
-    <div class="max-w-4xl relative z-10">
-      <p class="mb-3 text-[10px] font-bold tracking-[0.3em] uppercase text-white/50 animate-fade-in">Get in Touch</p>
-      <h1 class="font-serif text-3xl leading-tight text-white md:text-4xl tracking-tighter animate-fade-in delay-100">
-        Let's work <br/><span class="text-white/50">together.</span>
-      </h1>
+      <div class="md:justify-self-end space-y-4">
+        <p class="text-[9px] uppercase tracking-[0.3em] text-white/40 mb-6 text-right">Social</p>
+        <div class="flex flex-col items-end gap-2">
+          {socialLinks.map((link) => (
+            <a href={link.href} target="_blank" rel="noreferrer noopener" class="text-[10px] uppercase tracking-[0.2em] text-white/60 hover:text-white transition-colors">
+              {link.label} ↗
+            </a>
+          ))}
+        </div>
+      </div>
     </div>
-  </section>
-
-  <div class="mb-12 border-b border-white/10"></div>
-
-  <section class="mb-16">
-    <div class="grid gap-x-8 gap-y-12 lg:grid-cols-2">
-      {contacts.map((contact, i) => (
-        <article class={`group relative overflow-hidden border-t border-white/10 pt-6 transition-colors hover:border-white animate-fade-in delay-${(i+1)*100}`}>
-          <p class="mb-3 text-[10px] font-bold tracking-[0.2em] uppercase text-white/50">
-            {contact.name} {contact.role && <span class="text-white/30 font-normal normal-case tracking-normal">| {contact.role}</span>}
-          </p>
-          <a href={`mailto:${contact.email}`} class="block font-serif text-xl text-white transition-all duration-300 group-hover:translate-x-4 md:text-2xl break-all">
-            {contact.email}
-          </a>
-          <span class="absolute right-0 top-6 text-lg text-white opacity-0 transition-all duration-300 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0">→</span>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section class="mb-16 animate-fade-in delay-300">
-    <h2 class="mb-8 font-serif text-2xl text-white md:text-3xl mix-blend-difference">Social</h2>
-    <div class="flex flex-wrap gap-3">
-      {socialLinks.map((link) => (
-        <a href={link.href} target="_blank" rel="noreferrer noopener" class="group relative inline-flex h-14 items-center overflow-hidden rounded-full border border-white/20 px-8 transition-all duration-500 hover:border-white hover:bg-white hover:scale-105">
-          <span class="relative z-10 text-xs font-bold uppercase tracking-[0.2em] text-white transition-colors duration-500 group-hover:text-black">{link.label}</span>
-          <div class="absolute inset-0 bg-white translate-y-full transition-transform duration-300 group-hover:translate-y-0"></div>
-        </a>
-      ))}
-    </div>
-  </section>
+  </div>
 </Layout>
