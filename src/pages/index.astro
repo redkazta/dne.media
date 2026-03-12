@@ -1,111 +1,120 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { aboutCopy, managementProfiles, portfolioCategories, roster, services } from "../data/siteContent";
+import { aboutCopy, managementProfiles, portfolioCategories, services } from "../data/siteContent";
 ---
 
-<Layout title="DNE Media">
-  <!-- Hero Section with Spotlight Effect -->
-  <section class="relative flex min-h-[40vh] flex-col justify-end pb-8 md:pb-12 overflow-hidden">
-    <!-- Ambient Background Glow -->
-    <div class="absolute top-[-20%] right-[-10%] h-[200px] w-[200px] rounded-full bg-white/[0.03] blur-[60px] pointer-events-none"></div>
-    <div class="absolute bottom-[-10%] left-[-20%] h-[150px] w-[150px] rounded-full bg-white/[0.02] blur-[40px] pointer-events-none"></div>
-
-    <div class="max-w-xl relative z-10">
-      <span class="block mb-3 text-[10px] font-bold tracking-[0.4em] uppercase text-white/40 animate-fade-in">Production & Management</span>
-      <h1 class="font-serif text-2xl leading-tight text-white md:text-3xl lg:text-4xl text-balance tracking-tight">
-        <span class="block animate-fade-in delay-100">{aboutCopy[0].split(' ').slice(0, 4).join(' ')}</span>
-        <span class="block animate-fade-in delay-200 text-white/50">{aboutCopy[0].split(' ').slice(4).join(' ')}</span>
+<Layout title="DNE Media | Production & Management">
+  
+  <!-- Hero Section -->
+  <section class="min-h-[80vh] flex flex-col justify-center relative">
+    <div class="max-w-4xl">
+      <span class="block mb-6 text-xs font-bold tracking-[0.3em] uppercase text-neutral-500 animate-fade-in">
+        Global Production & Management
+      </span>
+      <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.9] text-white tracking-tighter mb-8 animate-fade-in delay-100">
+        {aboutCopy[0]}
       </h1>
-      <p class="mt-4 max-w-md text-sm leading-relaxed text-white/60 font-light animate-fade-in delay-300">
+      <p class="max-w-xl text-base md:text-lg text-neutral-400 font-light leading-relaxed animate-fade-in delay-200">
         {aboutCopy[1]}
       </p>
     </div>
-    
+
     <!-- Scroll Indicator -->
-    <div class="absolute bottom-6 right-0 animate-fade-in delay-500 hidden md:block">
-      <div class="flex items-center gap-2">
-        <span class="text-[9px] tracking-[0.3em] uppercase text-white/30 rotate-90 origin-right translate-x-1">Scroll</span>
-        <div class="h-8 w-[1px] bg-gradient-to-b from-white/0 via-white/20 to-white/0"></div>
+    <div class="absolute bottom-0 right-0 hidden md:flex items-center gap-4 animate-fade-in delay-500">
+      <span class="text-[10px] tracking-[0.3em] uppercase text-neutral-600">Scroll</span>
+      <div class="h-[1px] w-12 bg-neutral-800"></div>
+    </div>
+  </section>
+
+  <div class="w-full h-[1px] bg-white/10 my-24"></div>
+
+  <!-- Services Section -->
+  <section class="mb-32">
+    <div class="grid gap-16 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <h2 class="text-xs font-bold tracking-[0.3em] uppercase text-neutral-500 sticky top-32">
+          Services
+        </h2>
       </div>
-    </div>
-  </section>
-
-  <div class="mb-12 border-b border-white/5"></div>
-
-  <!-- Services: Interactive List -->
-  <section class="mb-12">
-    <div class="grid gap-8 lg:grid-cols-[1fr_2fr]">
-      <h2 class="font-serif text-xl text-white/40 sticky top-16 self-start mix-blend-difference">Services</h2>
-      <ul class="space-y-px">
-        {services.map((service, index) => (
-          <li class="group relative flex items-center justify-between border-t border-white/5 py-4 transition-all duration-500 hover:border-white/30 hover:pl-3">
-            <span class="absolute left-0 top-1/2 -translate-y-1/2 text-2xl font-serif leading-none text-white/[0.02] transition-transform duration-700 group-hover:translate-x-8 group-hover:scale-110 pointer-events-none select-none">0{index + 1}</span>
-            <span class="relative z-10 text-lg font-light text-white/60 transition-colors duration-300 group-hover:text-white md:text-xl">{service}</span>
-            <span class="relative z-10 text-[9px] tracking-widest text-white/20 opacity-0 transition-all duration-300 group-hover:opacity-100">EXPLORE</span>
-          </li>
-        ))}
-        <li class="border-t border-white/5"></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Portfolio: Masonry-style Grid -->
-  <section class="mb-12">
-    <div class="grid gap-8 lg:grid-cols-[1fr_2fr]">
-      <h2 class="font-serif text-xl text-white/40 sticky top-16 self-start mix-blend-difference">Selected Work</h2>
-      <div class="grid gap-4 sm:grid-cols-2">
-        {portfolioCategories.map((category, i) => (
-          <a href={`/${category.slug}`} class={`group relative block aspect-[3/4] overflow-hidden bg-neutral-900 transition-transform duration-700 hover:-translate-y-1 ${i % 2 === 1 ? 'mt-0 sm:mt-8' : ''}`}>
-            <div class="absolute inset-0 z-10 flex flex-col justify-between p-4 bg-gradient-to-b from-transparent via-transparent to-black/90 opacity-80 transition-opacity duration-500 group-hover:opacity-100">
-              <span class="self-end text-[9px] font-bold tracking-widest uppercase text-white/30 border border-white/10 px-2 py-0.5 rounded-full backdrop-blur-sm transition-colors group-hover:border-white/50 group-hover:text-white">View</span>
-              <div>
-                <span class="block text-[9px] font-bold tracking-[0.2em] uppercase text-white/50 mb-1">Portfolio</span>
-                <h3 class="font-serif text-xl text-white italic">{category.label}</h3>
-              </div>
+      <div class="lg:col-span-8">
+        <div class="grid gap-x-12 gap-y-16 md:grid-cols-2">
+          {services.map((service, index) => (
+            <div class="group border-t border-white/10 pt-6 transition-colors hover:border-white/40">
+              <span class="block mb-4 text-xs font-mono text-neutral-600 group-hover:text-white transition-colors">
+                0{index + 1}
+              </span>
+              <h3 class="text-2xl md:text-3xl font-serif text-neutral-300 group-hover:text-white transition-colors">
+                {service}
+              </h3>
             </div>
-            <!-- Dynamic Placeholder Pattern -->
-            <div class="absolute inset-0 opacity-10 transition-transform duration-1000 group-hover:scale-110" style={`background-image: radial-gradient(circle at center, white 1px, transparent 1px); background-size: ${20 + i * 5}px ${20 + i * 5}px;`}></div>
-            <div class="absolute inset-0 bg-white/5 mix-blend-overlay transition-colors duration-500 group-hover:bg-white/10"></div>
-          </a>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Management: Horizontal Scroll / Cards -->
-  <section class="mb-12">
-    <div class="grid gap-8 lg:grid-cols-[1fr_3fr]">
-      <h2 class="font-serif text-xl text-white/40 sticky top-16 self-start mix-blend-difference">Management</h2>
-      <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-        {managementProfiles.map((profile) => (
-          <a href={`/${profile.slug}`} class="group relative aspect-[3/4] overflow-hidden bg-neutral-900 border border-white/5">
+  <!-- Portfolio Section -->
+  <section class="mb-32">
+    <div class="grid gap-16 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <h2 class="text-xs font-bold tracking-[0.3em] uppercase text-neutral-500 sticky top-32">
+          Selected Work
+        </h2>
+      </div>
+      <div class="lg:col-span-8">
+        <div class="grid gap-8 md:grid-cols-2">
+          {portfolioCategories.map((category, i) => (
+            <a href={`/${category.slug}`} class={`group block ${i % 2 === 1 ? 'md:mt-16' : ''}`}>
+              <div class="relative aspect-[3/4] overflow-hidden bg-neutral-900 mb-4">
+                <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+                <!-- Placeholder for category image if we had one, using generic gradient for now or just text -->
+                <div class="absolute inset-0 flex items-center justify-center bg-neutral-900 border border-white/5 group-hover:border-white/20 transition-colors">
+                  <span class="text-xs tracking-[0.2em] uppercase text-neutral-500 group-hover:text-white transition-colors">View Project</span>
+                </div>
+              </div>
+              <h3 class="text-xl font-serif text-white group-hover:text-neutral-300 transition-colors">
+                {category.label}
+              </h3>
+              <p class="text-xs text-neutral-500 uppercase tracking-wider mt-1">Portfolio</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Management Section -->
+  <section class="mb-32">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+      <h2 class="text-4xl md:text-6xl font-serif text-white leading-none">
+        Management <br /> <span class="text-neutral-600">Roster</span>
+      </h2>
+      <a href="/artists" class="text-xs font-bold tracking-[0.2em] uppercase text-white border-b border-white/30 pb-1 hover:border-white transition-colors">
+        View All Artists
+      </a>
+    </div>
+
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {managementProfiles.slice(0, 3).map((profile) => (
+        <a href={`/${profile.slug}`} class="group block">
+          <div class="relative aspect-[3/4] overflow-hidden bg-neutral-900 mb-4">
             <img 
               src={profile.image} 
               alt={profile.label} 
-              class="h-full w-full object-cover transition-all duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-100 grayscale group-hover:grayscale-0"
+              class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0"
               loading="lazy"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-60"></div>
-            <div class="absolute bottom-0 left-0 w-full p-3 transition-transform duration-500 group-hover:-translate-y-1">
-              <h3 class="font-serif text-sm text-white tracking-tight">{profile.label}</h3>
-              <p class="text-[9px] uppercase tracking-widest text-white/40 mt-1 opacity-80 group-hover:text-white/80">Exclusive</p>
-            </div>
-          </a>
-        ))}
-      </div>
+            <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+          </div>
+          <div class="flex justify-between items-baseline">
+            <h3 class="text-lg font-medium text-white group-hover:text-neutral-300 transition-colors">
+              {profile.label}
+            </h3>
+            <span class="text-[10px] tracking-widest uppercase text-neutral-500">Exclusive</span>
+          </div>
+        </a>
+      ))}
     </div>
   </section>
 
-  <!-- Roster: Typographic Cloud -->
-  <section class="mb-12 relative">
-    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.01] to-transparent pointer-events-none"></div>
-    <div class="relative z-10 py-8 text-center">
-      <h2 class="mb-8 font-serif text-[10px] font-bold tracking-[0.4em] uppercase text-white/20">Complete Roster</h2>
-      <div class="flex flex-wrap justify-center gap-x-6 gap-y-4 max-w-4xl mx-auto px-4">
-        {roster.map((artist) => (
-          <span class="text-sm text-white/30 transition-all duration-300 hover:text-white hover:scale-105 md:text-lg font-serif italic cursor-crosshair">{artist}</span>
-        ))}
-      </div>
-    </div>
-  </section>
 </Layout>

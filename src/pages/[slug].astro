@@ -20,74 +20,82 @@ const page = pages.find((item) => item.slug === slug);
 const pageLabel = category?.label ?? profile?.label ?? slug;
 const pageTitle = page?.title ?? `${pageLabel} | DNE Media`;
 const typeLabel = category ? "Portfolio" : "Artist";
+const backLink = category ? "/" : "/artists";
+const backText = category ? "Home" : "All Artists";
 ---
 
 <Layout title={pageTitle}>
-  <div class="mb-8">
-    <a href="/artists" class="group inline-flex items-center text-[10px] uppercase tracking-[0.2em] text-white/30 transition-colors hover:text-white">
-      <span class="mr-2 transition-transform group-hover:-translate-x-1">←</span> Back
+  <div class="mb-12">
+    <a href={backLink} class="group inline-flex items-center text-xs uppercase tracking-[0.2em] text-neutral-500 transition-colors hover:text-white">
+      <span class="mr-3 transition-transform group-hover:-translate-x-1">←</span> {backText}
     </a>
   </div>
 
-  {profile ? (
-    <div class="grid gap-8 md:grid-cols-12 md:gap-12">
-      <!-- Image Column -->
-      <div class="md:col-span-5 lg:col-span-4">
-        <div class="relative aspect-[3/4] w-full overflow-hidden bg-neutral-900/50">
-          {profile.image ? (
-            <img 
-              src={profile.image} 
-              alt={pageLabel} 
-              class="h-full w-full object-cover transition-all duration-1000 grayscale hover:grayscale-0"
-              loading="lazy" 
-            />
-          ) : (
-            <div class="absolute inset-0 flex items-center justify-center text-white/20">
-              <span class="text-[10px] tracking-widest uppercase">No Image</span>
+  {profile || category ? (
+    <div class="grid gap-12 lg:grid-cols-12 lg:gap-24">
+      
+      <!-- Image Column (Sticky on Desktop) -->
+      <div class="lg:col-span-5">
+        <div class="sticky top-32">
+          <div class="relative aspect-[3/4] w-full overflow-hidden bg-neutral-900 mb-8">
+            {(profile?.image || category?.image) ? (
+              <img 
+                src={profile?.image || category?.image} 
+                alt={pageLabel} 
+                class="h-full w-full object-cover grayscale"
+                loading="lazy" 
+              />
+            ) : (
+              <div class="absolute inset-0 flex items-center justify-center text-neutral-700">
+                <span class="text-xs tracking-widest uppercase">No Image</span>
+              </div>
+            )}
+          </div>
+          
+          {profile?.socials && (
+            <div class="flex flex-col gap-4 border-t border-white/10 pt-6">
+              <h3 class="text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-600">Connect</h3>
+              <div class="flex flex-wrap gap-6">
+                {profile.socials.map(social => (
+                  <a href={social.url} target="_blank" rel="noopener noreferrer" class="text-xs uppercase tracking-widest text-neutral-400 transition-colors hover:text-white flex items-center gap-2">
+                    {social.label} <span class="text-[8px] opacity-50">↗</span>
+                  </a>
+                ))}
+              </div>
             </div>
           )}
         </div>
-        
-        {profile.socials && (
-          <div class="mt-6 flex flex-col gap-1">
-            <h3 class="text-[9px] font-bold tracking-[0.3em] uppercase text-white/20 mb-2">Connect</h3>
-            {profile.socials.map(social => (
-              <a href={social.url} target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between border-b border-white/5 py-2 text-[10px] uppercase tracking-widest text-white/50 transition-colors hover:text-white hover:border-white/20">
-                <span>{social.label}</span>
-                <span class="opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0">↗</span>
-              </a>
-            ))}
-          </div>
-        )}
       </div>
       
       <!-- Content Column -->
-      <div class="md:col-span-7 lg:col-span-8 flex flex-col justify-center">
-        <div>
-          <p class="mb-2 text-[10px] font-bold tracking-[0.3em] uppercase text-white/30">{typeLabel}</p>
-          <h1 class="font-serif text-3xl leading-none text-white md:text-5xl tracking-tight mix-blend-difference mb-4">
+      <div class="lg:col-span-7 flex flex-col justify-center">
+        <div class="mb-12">
+          <p class="mb-4 text-xs font-bold tracking-[0.3em] uppercase text-neutral-500">{typeLabel}</p>
+          <h1 class="font-serif text-5xl md:text-7xl leading-none text-white tracking-tighter mb-6">
             {pageLabel}
           </h1>
-          {profile.tags && (
-            <div class="mb-6 flex flex-wrap gap-2">
-              {profile.tags.map(tag => (
-                <span class="text-[10px] uppercase tracking-[0.2em] border border-white/10 px-2 py-0.5 rounded-full text-white/40">{tag}</span>
+          
+          {(profile?.tags || category?.tags) && (
+            <div class="flex flex-wrap gap-3">
+              {(profile?.tags || category?.tags).map(tag => (
+                <span class="text-[10px] uppercase tracking-[0.2em] border border-white/20 px-3 py-1 text-neutral-400">{tag}</span>
               ))}
             </div>
           )}
         </div>
 
-        <div class="prose prose-invert prose-sm max-w-none">
-          <p class="text-white/70 text-sm leading-relaxed font-light whitespace-pre-line text-justify tracking-wide">
-            {profile.bio || "Biography coming soon."}
+        <div class="prose prose-invert prose-lg max-w-none text-neutral-400 font-light leading-relaxed">
+          <p class="whitespace-pre-line">
+            {profile?.bio || category?.description || "Content coming soon."}
           </p>
         </div>
       </div>
+
     </div>
   ) : (
-    <div class="min-h-[40vh] flex flex-col justify-center items-center text-center">
-       <h1 class="font-serif text-3xl md:text-5xl text-white mb-4">{pageLabel}</h1>
-       <p class="text-white/40 text-xs tracking-widest uppercase">Content coming soon</p>
+    <div class="min-h-[50vh] flex flex-col justify-center items-center text-center">
+       <h1 class="font-serif text-4xl md:text-6xl text-white mb-4">{pageLabel}</h1>
+       <p class="text-neutral-500 text-xs tracking-widest uppercase">Page under construction</p>
     </div>
   )}
 </Layout>
