@@ -5,26 +5,26 @@ import { contacts, socialLinks } from "../data/siteContent";
 
 <Layout title="Contact | DNE Media">
   
-  <div class="mb-12 border-b border-white/10 pb-6">
-    <h1 class="font-serif text-3xl md:text-4xl text-white mb-2 tracking-tighter">
+  <div class="mb-6 border-b border-white/10 pb-4">
+    <h1 class="font-serif text-2xl md:text-4xl text-white mb-1 tracking-tighter">
       Contact
     </h1>
-    <p class="text-neutral-500 max-w-2xl text-sm font-light leading-relaxed">
+    <p class="text-neutral-500 max-w-2xl text-xs font-light leading-relaxed">
       Reach out for inquiries.
     </p>
   </div>
 
-  <div class="grid gap-12 lg:grid-cols-4 mb-16">
+  <div class="grid gap-8 lg:grid-cols-4 mb-12">
     
     <!-- Emails -->
     <div class="lg:col-span-3">
-      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {contacts.map((contact) => (
-          <div class="group border-t border-white/5 pt-4">
-            <p class="text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-500 mb-2">
+          <div class="group border-t border-white/5 pt-2">
+            <p class="text-[8px] font-bold tracking-[0.3em] uppercase text-neutral-500 mb-1">
               {contact.role || contact.name}
             </p>
-            <a href={`mailto:${contact.email}`} class="block font-serif text-lg md:text-xl text-white hover:text-neutral-400 transition-colors break-words">
+            <a href={`mailto:${contact.email}`} class="block font-serif text-base md:text-xl text-white hover:text-neutral-400 transition-colors break-words">
               {contact.email}
             </a>
           </div>

@@ -6,30 +6,30 @@ import { aboutCopy, managementProfiles, portfolioCategories, services } from "..
 <Layout title="DNE Media | Production & Management">
   
   <!-- Hero Section -->
-  <section class="py-12 md:py-20 flex flex-col justify-center relative border-b border-white/10 mb-12">
+  <section class="py-6 md:py-12 flex flex-col justify-center relative border-b border-white/10 mb-8">
     <div class="max-w-4xl">
-      <span class="block mb-4 text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-500 animate-fade-in">
+      <span class="block mb-2 text-[8px] md:text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-500 animate-fade-in">
         Global Production & Management
       </span>
-      <h1 class="font-serif text-3xl md:text-5xl lg:text-6xl leading-[1.1] text-white tracking-tighter mb-6 animate-fade-in delay-100">
+      <h1 class="font-serif text-2xl md:text-5xl lg:text-6xl leading-[1.1] text-white tracking-tighter mb-3 animate-fade-in delay-100">
         {aboutCopy[0]}
       </h1>
-      <p class="max-w-xl text-sm md:text-base text-neutral-400 font-light leading-relaxed animate-fade-in delay-200">
+      <p class="max-w-xl text-xs md:text-base text-neutral-400 font-light leading-relaxed animate-fade-in delay-200">
         {aboutCopy[1]}
       </p>
     </div>
   </section>
 
   <!-- Services Section -->
-  <section class="mb-16">
-    <div class="grid gap-8 lg:grid-cols-12">
+  <section class="mb-12">
+    <div class="grid gap-6 lg:grid-cols-12">
       <div class="lg:col-span-3">
-        <h2 class="text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-500 sticky top-24">
+        <h2 class="text-[8px] md:text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-500 sticky top-20">
           Services
         </h2>
       </div>
       <div class="lg:col-span-9">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
           {services.map((service, index) => (
             <div class="group border-t border-white/10 pt-4 transition-colors hover:border-white/40">
               <span class="block mb-2 text-[10px] font-mono text-neutral-600 group-hover:text-white transition-colors">
