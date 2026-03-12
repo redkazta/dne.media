@@ -29,7 +29,7 @@ const { title } = Astro.props;
           DNE Media
         </a>
         <nav aria-label="Primary navigation">
-          <ul class="flex flex-wrap items-center gap-4 text-[9px] font-medium tracking-[0.2em] uppercase md:gap-6">
+          <ul class="flex flex-wrap items-center gap-4 text-[10px] font-medium tracking-[0.2em] uppercase md:gap-6">
             {primaryNav.map((item) => (
               <li>
                 <a href={item.href} class="relative text-white/50 no-underline transition-colors duration-300 hover:text-white">
@@ -41,20 +41,20 @@ const { title } = Astro.props;
         </nav>
       </div>
     </header>
-    <main class="mx-auto w-full max-w-6xl px-6 pt-20 pb-12 md:px-8 md:pt-24 md:pb-16">
+    <main class="mx-auto w-full max-w-6xl px-4 pt-16 pb-8 md:px-6 md:pt-20 md:pb-12">
       <slot />
     </main>
-    <footer class="border-t border-white/5 bg-[#0a0a0a] pt-12 pb-8">
-      <div class="mx-auto grid w-full max-w-6xl gap-8 px-6 md:grid-cols-2 md:px-8">
+    <footer class="border-t border-white/5 bg-[#0a0a0a] pt-8 pb-6">
+      <div class="mx-auto grid w-full max-w-6xl gap-4 px-4 md:grid-cols-2 md:px-6">
         <div class="space-y-6">
           <h3 class="font-serif text-sm md:text-base text-white tracking-wide">Contact</h3>
           <ul class="space-y-4">
             {contacts.map((contact) => (
               <li>
-                <p class="text-[9px] uppercase tracking-[0.2em] text-white/30 mb-0.5">
+                <p class="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-0.5">
                   {contact.name} {contact.role ? `— ${contact.role}` : ""}
                 </p>
-                <a href={`mailto:${contact.email}`} class="block text-xs text-white/80 transition-colors hover:text-white font-light tracking-wide">
+                <a href={`mailto:${contact.email}`} class="block text-sm text-white/80 transition-colors hover:text-white font-light tracking-wide">
                   {contact.email}
                 </a>
               </li>
@@ -66,7 +66,7 @@ const { title } = Astro.props;
           <ul class="flex flex-col items-end space-y-2">
             {socialLinks.map((link) => (
               <li>
-                <a href={link.href} target="_blank" rel="noreferrer noopener" class="text-[9px] text-white/50 transition-colors hover:text-white uppercase tracking-[0.2em]">
+                <a href={link.href} target="_blank" rel="noreferrer noopener" class="text-[10px] text-white/50 transition-colors hover:text-white uppercase tracking-[0.2em]">
                   {link.label}
                 </a>
               </li>
@@ -74,7 +74,7 @@ const { title } = Astro.props;
           </ul>
         </div>
       </div>
-      <div class="mx-auto mt-12 max-w-6xl px-6 text-[9px] uppercase tracking-[0.3em] text-white/10 md:px-8 flex justify-between">
+      <div class="mx-auto mt-8 max-w-6xl px-4 text-[10px] uppercase tracking-[0.3em] text-white/10 md:px-6 flex justify-between">
         <span>© {new Date().getFullYear()} DNE Media</span>
         <span>All rights reserved</span>
       </div>
