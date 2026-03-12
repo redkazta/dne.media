@@ -109,7 +109,7 @@ const embeddedVideos = categoryVideos
               <p class="text-[8px] md:text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-500">Videos</p>
               <p class="text-[8px] md:text-[10px] uppercase tracking-[0.2em] text-neutral-600">{embeddedVideos.length} items</p>
             </div>
-            <div class="grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-3">
+            <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 md:gap-3">
               {embeddedVideos.map((video, index) => (
                 <button
                   class="group relative overflow-hidden border border-white/10 bg-neutral-950 text-left transition-colors hover:border-white/40"
@@ -136,7 +136,7 @@ const embeddedVideos = categoryVideos
               <p class="text-[8px] md:text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-500">Media</p>
               <p class="text-[8px] md:text-[10px] uppercase tracking-[0.2em] text-neutral-600">{categoryMedia.length} items</p>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-3">
+            <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 md:gap-3">
               {categoryMedia.map((item) => (
                 <a href={item} target="_blank" rel="noopener noreferrer" class="group block">
                   <div class="relative aspect-[4/5] overflow-hidden bg-neutral-900">

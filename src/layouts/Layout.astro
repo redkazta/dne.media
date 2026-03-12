@@ -14,7 +14,7 @@ const { title } = Astro.props;
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
@@ -265,8 +265,28 @@ const { title } = Astro.props;
         setupRouteLoader();
       }
 
+      function lockMobileZoom() {
+        if (document.body.getAttribute('data-zoom-lock-bound') === 'true') return;
+        document.body.setAttribute('data-zoom-lock-bound', 'true');
+
+        document.addEventListener('gesturestart', (event) => {
+          event.preventDefault();
+        });
+
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', (event) => {
+          const now = Date.now();
+          if (now - lastTouchEnd <= 280) {
+            event.preventDefault();
+          }
+          lastTouchEnd = now;
+        }, { passive: false });
+      }
+
       initGlobalUX();
+      lockMobileZoom();
       document.addEventListener('astro:page-load', initGlobalUX);
+      document.addEventListener('astro:page-load', lockMobileZoom);
     </script>
 
     <!-- Footer -->
