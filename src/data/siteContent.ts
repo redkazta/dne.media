@@ -325,6 +325,36 @@ export const categoryMediaBySlug: Record<string, string[]> = {
   ]
 };
 
+export const categoryVideoBySlug: Record<string, string[]> = {
+  "live-clips": [
+    "https://vimeo.com/1169180295?fl=pl&fe=sh",
+    "https://vimeo.com/1169183261?fl=pl&fe=sh",
+    "https://vimeo.com/1169184929?fl=pl&fe=sh",
+    "https://vimeo.com/1169184968?fl=pl&fe=sh",
+    "https://vimeo.com/1169190808?fl=pl&fe=sh",
+    "https://vimeo.com/1169214573?fl=pl&fe=sh",
+    "https://vimeo.com/1169214592?fl=pl&fe=sh",
+    "https://vimeo.com/1169214866?fl=pl&fe=sh",
+    "https://vimeo.com/1169216301?fl=pl&fe=sh",
+    "https://vimeo.com/1169216458?fl=pl&fe=sh",
+    "https://vimeo.com/1169350067?fl=pl&fe=sh",
+    "https://vimeo.com/1169247409?fl=pl&fe=sh",
+    "https://vimeo.com/1169248002?fl=pl&fe=sh",
+    "https://vimeo.com/1169243917?fl=pl&fe=sh",
+    "https://vimeo.com/1169243932?fl=pl&fe=sh",
+    "https://vimeo.com/1169245688?fl=pl&fe=sh",
+    "https://vimeo.com/1116930015?fl=pl&fe=sh",
+    "https://vimeo.com/1101084111?p=0s",
+    "https://vimeo.com/1099470017?p=0s",
+    "https://vimeo.com/1101084245?p=0s",
+    "https://vimeo.com/1099470678?p=0s",
+    "https://vimeo.com/1089718106?share=copy#t=0",
+    "https://vimeo.com/1064845255?share=copy",
+    "https://vimeo.com/1064845298?share=copy",
+    "https://vimeo.com/1042242810?share=copy"
+  ]
+};
+
 export const artistsFeaturedMedia = [
   wixMedia("99ddea_3faa1003a75c40d5b9e680b57d84bd16~mv2.png"),
   wixMedia("99ddea_8c350286ab784f23bcd7469705548765~mv2.png"),
@@ -443,7 +473,7 @@ export const contacts: ContactProfile[] = [
     ]
   },
   {
-    name: "Angel",
+    name: "Angel Castañeda",
     email: "angel@dne.media",
     role: "System Administrator",
     bio: "Angel manages the technical backbone of DNE Media, from infrastructure and automation to internal systems, helping keep the team stable, secure and always online.",

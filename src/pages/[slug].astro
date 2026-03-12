@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { categoryMediaBySlug, managementProfiles, pages, portfolioCategories } from "../data/siteContent";
+import { categoryMediaBySlug, categoryVideoBySlug, managementProfiles, pages, portfolioCategories } from "../data/siteContent";
 
 export function getStaticPaths() {
   const slugs = new Set([
@@ -23,6 +23,17 @@ const typeLabel = category ? "Portfolio" : "Artist";
 const backLink = category ? "/" : "/artists";
 const backText = category ? "Home" : "All Artists";
 const categoryMedia = category ? categoryMediaBySlug[category.slug] ?? [] : [];
+const categoryVideos = category ? categoryVideoBySlug[category.slug] ?? [] : [];
+const embeddedVideos = categoryVideos
+  .map((url) => {
+    const match = url.match(/vimeo\.com\/(\d+)/);
+    if (!match) return null;
+    return {
+      source: url,
+      embed: `https://player.vimeo.com/video/${match[1]}`
+    };
+  })
+  .filter((item): item is { source: string; embed: string } => item !== null);
 ---
 
 <Layout title={pageTitle}>
@@ -90,6 +101,36 @@ const categoryMedia = category ? categoryMediaBySlug[category.slug] ?? [] : [];
             {profile?.bio || category?.description || "Content coming soon."}
           </p>
         </div>
+
+        {embeddedVideos.length > 0 && (
+          <div class="mt-6 md:mt-8">
+            <div class="mb-3 flex items-center justify-between">
+              <p class="text-[8px] md:text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-500">Videos</p>
+              <p class="text-[8px] md:text-[10px] uppercase tracking-[0.2em] text-neutral-600">{embeddedVideos.length} items</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+              {embeddedVideos.map((video) => (
+                <article class="overflow-hidden border border-white/10 bg-neutral-950">
+                  <div class="aspect-video bg-neutral-900">
+                    <iframe
+                      src={video.embed}
+                      title={`${pageLabel} video`}
+                      loading="lazy"
+                      allow="autoplay; fullscreen; picture-in-picture"
+                      allowfullscreen
+                      class="h-full w-full"
+                    ></iframe>
+                  </div>
+                  <div class="px-3 py-2">
+                    <a href={video.source} target="_blank" rel="noopener noreferrer" class="text-[9px] uppercase tracking-[0.2em] text-neutral-400 transition-colors hover:text-white">
+                      Open on Vimeo ↗
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        )}
 
         {categoryMedia.length > 0 && (
           <div class="mt-6 md:mt-8">
